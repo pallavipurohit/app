@@ -1143,16 +1143,16 @@ for(f=0;f<=4;f=f+0.08)            //display electron as points in slant up
 */
 
 
-
+/*															dotted line from back to the end of the tube
 glLineStipple(1, 0xAAAA);  
 glEnable(GL_LINE_STIPPLE);
 glLineWidth(6);
 glBegin(GL_LINES);
 	glColor3f(0,1.0,0);
-glVertex3f(-2.5,1,1);		//origin for the ray
+glVertex3f(-2.5,1,1);		//origin for the ray 
 glVertex3f(0,1,1);
 glEnd();
-
+*/
 
 int i;
 for (i=0;i<=196;i++)
@@ -1169,15 +1169,259 @@ for (i=0;i<=196;i++)
 	glEnd();
 //	sleep(20);
 	glFlush();
-	glutSwapBuffers();
+	//glutSwapBuffers();
 	//glutPostRedisplay();
 
 }
 
 
 
+//$$$$$$
+
+/*
+y2=1;									//small copy of original code (trial)
+for(f=0;f<=4.75;f=f+0.08)            //display electron as points in slant down
+
+    {
+    glPointSize(6);
+    glBegin(GL_POINTS);
+	if((-2.5+f)>0.0)
+        {
+        glColor3f(0,t,0);
+        glVertex3f(-2.5+f,y2,1);
+        y2=y2+0.02;    //0.02
+		}
+	else
+		{
+        glColor3f(0,t,0);
+        glVertex3f(-2.5+f,1,1);
+		}
+	}
+
+state1=0;
+glEnd();
+*/
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+glPointSize(6);
+glBegin(GL_POINTS);
+for(f=0;f<=4.75;f=f+0.08,z=z+y)            //display electron as points
+        {
+        glColor3f(0,t,0);
+        glVertex3f(-2.5+f,1,1);
+        }
+ glEnd();
+ glPointSize(6);
+
+
+    if(state1==0)
+        {
+            cc=1;
+        }
+    else
+        {
+            cc=2;
+    }
+    if(state2==1&state11==1&state12==1)
+        {
+            cc=3;
+
+        }
+    if(state6==1&state9==1)
+        {
+            cc=3;
+        }
+    if(state7==1&state10==1)
+        {
+            cc=4;
+        }
+
+
+
+switch(cc)
+	{
+	case 1:yy=1;
+
+		for(f=0;f<=4.75;f=f+0.08)          //display electron as points in slant up
+		{
+			glPointSize(8);
+			glBegin(GL_POINTS);
+			if((-2.5+f)>-0.4)
+			{
+				glColor3f(0,t,0);
+				glVertex3f(-2.5+f,yy,1);		//$$$$$$$$$
+				yy=yy+va;    //0.02
+			}
+			else
+			{
+				glColor3f(0,t,0);
+				glVertex3f(-2.5+f,1,1);		//$$$$$$$$$
+			}
+		}
+		state1=1;
+		glEnd();	
+	break;
+
+
+	case 2:
+		yy=1;
+		for(f=0;f<=4.75;f=f+0.08)            //display electron as points in slant down
+		{
+			glPointSize(6);
+			glBegin(GL_POINTS);
+			if((-2.5+f)>0.0)				//$$$$$$$$$
+			{
+			glColor3f(0,1,0);
+			glVertex3f(-2.5+f,yy,1);		//$$$$$$$$$
+			yy=yy-va;    //0.02
+			}
+			else
+			{
+			glColor3f(0,t,0);
+			glVertex3f(-2.5+f,1,1);
+			}
+		}
+		state1=0;
+		glEnd();
+	break;
+
+
+	case 3:
+		yyy=1;
+		for(f=0;f<=4.75;f=f+0.08)            //display electron as points in slant down
+		{
+			glPointSize(6);
+			glBegin(GL_POINTS);
+			if((-2.5+f)>0.0)
+			{
+				glColor3f(0,t,0);
+				glVertex3f(-2.5+f,yyy,1);
+				yyy=yyy-0.03;    //0.02
+			}
+			else
+			{
+				glColor3f(0,t,0);
+				glVertex3f(-2.5+f,1,1);
+			}
+		}
+		state1=0;
+		glEnd();
+	break;
+
+	case 4:
+		y2=1;
+		for(f=0;f<=4.75;f=f+0.08)            //display electron as points in slant down
+		{
+			glPointSize(6);
+			glBegin(GL_POINTS);
+			if((-2.5+f)>0.0)
+			{
+				glColor3f(0,t,0);
+				glVertex3f(-2.5+f,y2,1);
+				y2=y2+0.02;    //0.02
+			}
+			else
+			{
+				glColor3f(0,t,0);
+				glVertex3f(-2.5+f,1,1);
+			}
+		}
+		state1=0;
+		glEnd();
+	break;
+}
+
+/*
+yy=1;
+
+		for(f=0;f<=4.75;f=f+0.08)          //display electron as points in slant up
+		{
+			glPointSize(8);
+			glBegin(GL_POINTS);
+			if((-2.5+f)>-0.4)
+			{
+				glColor3f(0,t,0);
+				glVertex3f(-2.5+f,yy,1);		//$$$$$$$$$
+				yy=yy+va;    //0.02
+			}
+			else
+			{
+				glColor3f(0,t,0);
+				glVertex3f(-2.5+f,1,1);		//$$$$$$$$$
+			}
+		}
+		state1=1;
+		glEnd();	
+
+*/
+
+
+
+
+
+
+
+/*
+yy=1;
+
+for(f=0;f<=4.75;f=f+0.08)            //display electron as points in slant up
+{
+glPointSize(6);
+glBegin(GL_POINTS);
+
+if((-2.5+f)>-0.4)
+{
+glColor3f(0,t,0);
+glVertex3f(-2.5+f,yy,1);		//$$$$$$$$$
+yy=yy+va;    //0.02
+}
+else
+{
+glColor3f(0,t,0);
+glVertex3f(-2.5+f,1,1);		//$$$$$$$$$
+}
+}
+//  state1=1;
+glEnd();	
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 glBegin(GL_POLYGON);//anode
 glLineWidth(10);
 glColor3f(1,0,0.5);
@@ -1475,23 +1719,33 @@ void cover()//Main screen content
 		//glColor3f(1.00,0.20,0.10);
 		glLoadName(TEXTID);
 
-		DrawTextXY(-2.0,3.5,0.1,0.0014,"Graphical Implementation Of");
-    DrawTextXY(-2.7,1.0,0.0,0.0022," ''CATHODE RAY TUBE''");
-	DrawTextXY(1.4,-1.6,0.0,0.0007,"Press C to continue  ");
-    DrawTextXY(-1.0,0.10,0.0,0.0015,"  Submitted By:    ");
-	glColor3f(0.0,1.0,0.0);
-     DrawTextXY(-3.6,1.3,0.0,0.0016,"PRATHIMA.G (1ST12CS076)              VIDHYASHRE.R(1ST13CS145) ");
-	 glColor3f(1.0,0.0,0.0);
-	 DrawTextXY(-2.3,0.4,0.0,0.0014,"Under the guidance of:");
-	 glColor3f(0.9,0.2,0.6);
-    DrawTextXY(-1.4,0.0,0.0,0.0017,"    Mr.SRINATH.K.S B.E.,M.Tech.    ");
-	DrawTextXY(-1.2,-0.2,0.0,0.001,"    Lecturer,Dept. Of CS&E");
-	
-	DrawTextXY(-0.5,-1.0,0.0,0.0019,"    SaIT");
-    //geppetto edit begins
-	glColor3f(0.0,0.5,0.5);
-	DrawTextXY(-0.7,-1.2,0.0,0.0013,"Sambhram Institute Of Technology,M.S.Palya,B'lore");
-	
+		DrawTextXY(-2.0,3.5,0.1,0.0014," Graphical Implementation Of");
+		DrawTextXY(-2.7,1.0,0.0,0.0022," ''CATHODE RAY TUBE''");
+		DrawTextXY(1.4,-1.6,0.0,0.0007,"Press C to continue  ");
+		DrawTextXY(-1.0,0.10,0.0,0.0015,"  Submitted By:    ");
+		glColor3f(0.0,1.0,0.0);
+		DrawTextXY(-3.6,1.3,0.0,0.0016,"PRATHIMA.G (1ST12CS076)              VIDHYASHRE.R(1ST13CS145) ");
+		glColor3f(1.0,0.0,0.0);
+		DrawTextXY(-2.3,0.4,0.0,0.0014,"Under the guidance of:");
+		glColor3f(0.9,0.2,0.6);
+		DrawTextXY(-1.4,0.0,0.0,0.0017,"    Mr.SRINATH.K.S B.E.,M.Tech.    ");
+		DrawTextXY(-1.2,-0.2,0.0,0.001,"    Lecturer,Dept. Of CS&E");
+
+		DrawTextXY(-0.5,-1.0,0.0,0.0019,"    SaIT");
+		//geppetto edit begins
+		glColor3f(0.0,0.5,0.5);
+		DrawTextXY(-0.7,-1.2,0.0,0.0013,"Sambhram Institute Of Technology,M.S.Palya,B'lore");
+
+
+		
+	//BORDER
+	glPointSize(8);
+	glBegin(GL_POINTS);
+	glVertex2f(-2.0,3.5);
+
+	glEnd();
+
+
 	glFlush();			//Finish rendering
 	glutSwapBuffers();
 
@@ -1564,7 +1818,7 @@ void cover()//Main screen content
 
 	
 /*
-	glBegin(GL_LINES);
+	glBegin(GL_LINE_LOOP);
 	glVertex2f(-3.5,-3.5);
 	glVertex2f(-3.5,3.0);
 
