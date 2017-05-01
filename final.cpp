@@ -1720,11 +1720,11 @@ void cover()//Main screen content
 		glLoadName(TEXTID);
 
 		DrawTextXY(-2.0,3.5,0.1,0.0014," Graphical Implementation Of");
-		DrawTextXY(-2.7,1.0,0.0,0.0022," ''CATHODE RAY TUBE''");
-		DrawTextXY(1.4,-1.6,0.0,0.0007,"Press C to continue  ");
+		DrawTextXY(-2.7,1.0,0.0,0.0022," CATHODE RAY TUBE");
+		DrawTextXY(1.4,-1.6,0.0,0.0007," Press C to continue  ");
 		DrawTextXY(-1.0,0.10,0.0,0.0015,"  Submitted By:    ");
 		glColor3f(0.0,1.0,0.0);
-		DrawTextXY(-3.6,1.3,0.0,0.0016,"PRATHIMA.G (1ST12CS076)              VIDHYASHRE.R(1ST13CS145) ");
+		DrawTextXY(-3.6,1.3,0.0,0.0016," Pallavi(1ST14CS738)    Abhinav(1ST14CS700) ");
 		glColor3f(1.0,0.0,0.0);
 		DrawTextXY(-2.3,0.4,0.0,0.0014,"Under the guidance of:");
 		glColor3f(0.9,0.2,0.6);
@@ -1740,10 +1740,262 @@ void cover()//Main screen content
 		
 	//BORDER
 	glPointSize(8);
-	glBegin(GL_POINTS);
-	glVertex2f(-2.0,3.5);
+	glBegin(GL_LINES);
+	glColor3f(1.0,0.0,0.0);
+	glVertex2f(-3.8,-3.8);
+	glVertex2f(-3.8,5.1);
 
-	glEnd();
+	glVertex2f(-3.8,-3.8);
+	glVertex2f(5.1,-3.8);
+	
+	glVertex2f(5.1,5.1);
+	glVertex2f(5.1,5.1);
+
+	glVertex2f(5.1,5.1);
+	glVertex2f(-3.8,5.1);
+
+	glEnd();              //B1
+
+	
+	
+	glBegin(GL_LINES);
+	glColor3f(1.0,0.0,0.0);
+	glVertex2f(-3.6,-3.6);
+	glVertex2f(-3.6,5.1);
+
+	glVertex2f(-3.6,-3.6);
+	glVertex2f(5.1,-3.6);
+	
+	glVertex2f(5.1,5.1);
+	glVertex2f(5.1,5.1);
+
+	glVertex2f(5.1,5.1);
+	glVertex2f(-3.6,5.1);
+    glEnd();             //B2
+	
+	glBegin(GL_LINES);
+	glColor3f(1.0,0.0,0.0);
+	glVertex2f(-3.8,-3.8);
+	glVertex2f(-3.8,-2.5);
+
+	glVertex2f(-3.8,-3.8);
+	glVertex2f(-2.5,-3.8);
+	
+	glVertex2f(-2.5,-2.5);
+	glVertex2f(-2.5,-2.5);
+
+	glVertex2f(-2.5,-2.5);
+	glVertex2f(-3.8,-2.5);
+    glEnd();              //B3
+
+	glBegin(GL_LINES);
+	glColor3f(1.0,0.0,0.0);
+	glVertex2f(-3.6,-3.6);
+	glVertex2f(-3.6,-2.5);
+
+	glVertex2f(-3.6,-3.6);
+	glVertex2f(-2.5,-3.6);
+	
+	glVertex2f(-2.5,-2.5);
+	glVertex2f(-2.5,-2.5);
+
+	glVertex2f(-2.5,-2.5);
+	glVertex2f(-3.6,-2.5);
+    glEnd();              //B4
+
+	glBegin(GL_LINES);
+	glColor3f(1.0,0.0,0.0);
+	glVertex2f(3.6,3.6);
+	glVertex2f(3.6,5.1);
+
+	glVertex2f(3.6,3.6);
+	glVertex2f(5.1,3.6);
+	
+	glVertex2f(5.1,5.1);
+	glVertex2f(5.1,5.1);
+
+	glVertex2f(5.1,5.1);
+	glVertex2f(3.6,5.1);
+    glEnd();              //B5
+
+	glBegin(GL_LINES);
+	glColor3f(1.0,0.0,0.0);
+	glVertex2f(3.8,3.8);
+	glVertex2f(3.8,5.1);
+
+	glVertex2f(3.8,3.8);
+	glVertex2f(5.1,3.6);
+	
+	glVertex2f(5.1,5.1);
+	glVertex2f(5.1,5.1);
+
+	glVertex2f(5.1,5.1);
+	glVertex2f(3.8,5.1);
+    glEnd();              //B6
+
+	glBegin(GL_LINES);
+	glColor3f(1.0,0.0,0.0);
+	glVertex2f(3.8,3.8);
+	glVertex2f(3.8,-2.5);
+
+	glVertex2f(3.8,3.8);
+	glVertex2f(-2.5,3.8);
+	
+	glVertex2f(-2.5,-2.5);
+	glVertex2f(-2.5,-2.5);
+
+	glVertex2f(-2.5,-2.5);
+	glVertex2f(3.8,-2.5);
+    glEnd();              //B7
+
+	glBegin(GL_LINES);
+	glColor3f(1.0,0.0,0.0);
+	glVertex2f(3.6,3.6);
+	glVertex2f(3.6,-2.5);
+
+	glVertex2f(3.6,3.6);
+	glVertex2f(-2.5,3.6);
+	
+	glVertex2f(-2.5,-2.5);
+	glVertex2f(-2.5,-2.5);
+
+	glVertex2f(-2.5,-2.5);
+	glVertex2f(3.6,-2.5);
+    glEnd();              //B8
+ 
+
+/*	glBegin(GL_LINES);
+	glColor3f(1.0,0.0,0.0);
+	glVertex2f(-3.8,-3.8);
+	glVertex2f(-3.8,5.1);
+
+	glVertex2f(-3.8,-3.8);
+	glVertex2f(5.1,-3.8);
+	
+	glVertex2f(5.1,5.1);
+	glVertex2f(5.1,5.1);
+
+	glVertex2f(5.1,5.1);
+	glVertex2f(-3.8,5.1);
+
+	glEnd();              //B9 */
+
+	glBegin(GL_LINES);
+	glColor3f(1.0,0.0,0.0);
+	glVertex2f(-3.8,-3.8);
+	glVertex2f(-3.8,4.8);
+
+	glVertex2f(-3.8,-3.8);
+	glVertex2f(4.8,-3.8);
+	
+	glVertex2f(4.8,4.8);
+	glVertex2f(4.8,4.8);
+
+	glVertex2f(4.8,4.8);
+	glVertex2f(-3.8,4.8);
+
+	glEnd();              //B10
+
+/*	glBegin(GL_LINES);
+	glColor3f(1.0,0.0,0.0);
+	glVertex2f(3.8,3.8);
+	glVertex2f(3.8,5.1);
+
+	glVertex2f(3.8,3.8);
+	glVertex2f(5.1,3.6);
+	
+	glVertex2f(5.1,5.1);
+	glVertex2f(5.1,5.1);
+
+	glVertex2f(5.1,5.1);
+	glVertex2f(3.8,5.1);
+    glEnd();              //B11 */
+
+	glBegin(GL_LINES);
+	glColor3f(1.0,0.0,0.0);
+	glVertex2f(3.8,3.8);
+	glVertex2f(3.8,4.8);
+
+	glVertex2f(3.8,3.8);
+	glVertex2f(4.8,3.8);
+	
+	glVertex2f(4.8,4.8);
+	glVertex2f(4.8,4.8);
+
+	glVertex2f(4.8,4.8);
+	glVertex2f(3.8,4.8);
+
+	glEnd();              //B12
+
+/*		glBegin(GL_LINES);
+	glColor3f(1.0,0.0,0.0);
+	glVertex2f(-3.8,-3.8);
+	glVertex2f(-3.8,-2.5);
+
+	glVertex2f(-3.8,-3.8);
+	glVertex2f(-2.5,-3.8);
+	
+	glVertex2f(-2.5,-2.5);
+	glVertex2f(-2.5,-2.5);
+
+	glVertex2f(-2.5,-2.5);
+	glVertex2f(-3.8,-2.5);
+    glEnd();              //B13 */
+
+		glBegin(GL_LINES);
+	glColor3f(1.0,0.0,0.0);
+	glVertex2f(-3.8,-3.8);
+	glVertex2f(-3.8,-2.2);
+
+	glVertex2f(-3.8,-3.8);
+	glVertex2f(-2.2,-3.8);
+	
+	glVertex2f(-2.2,-2.2);
+	glVertex2f(-2.2,-2.2);
+
+	glVertex2f(-2.2,-2.2);
+	glVertex2f(-3.8,-2.2);
+
+	glEnd();              //B14
+
+/*	glBegin(GL_LINES);
+	glColor3f(1.0,0.0,0.0);
+	glVertex2f(3.8,3.8);
+	glVertex2f(3.8,-2.5);
+
+	glVertex2f(3.8,3.8);
+	glVertex2f(-2.5,3.8);
+	
+	glVertex2f(-2.5,-2.5);
+	glVertex2f(-2.5,-2.5);
+
+	glVertex2f(-2.5,-2.5);
+	glVertex2f(3.8,-2.5);
+    glEnd();              //B15 */
+
+		glBegin(GL_LINES);
+	glColor3f(1.0,0.0,0.0);
+	glVertex2f(3.8,3.8);
+	glVertex2f(3.8,-2.2);
+
+	glVertex2f(3.8,3.8);
+	glVertex2f(-2.2,3.8);
+	
+	glVertex2f(-2.2,-2.2);
+	glVertex2f(-2.2,-2.2);
+
+	glVertex2f(-2.2,-2.2);
+	glVertex2f(3.8,-2.2);
+
+	glEnd();              //B16
+
+		
+
+
+
+
+
+
 
 
 	glFlush();			//Finish rendering
