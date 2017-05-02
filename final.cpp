@@ -1747,23 +1747,25 @@ void cover()//Main screen content
 
 		//glColor3f(1.00,0.20,0.10);
 		glLoadName(TEXTID);
-
-		DrawTextXY(-2.0,3.5,0.1,0.0014," Graphical Implementation Of");
-		DrawTextXY(-2.7,1.0,0.0,0.0022," CATHODE RAY TUBE");
-		DrawTextXY(1.4,-1.6,0.0,0.0007," Press C to continue  ");
-		DrawTextXY(-1.0,0.10,0.0,0.0015,"  Submitted By:    ");
+	
+		DrawTextXY(-2.0,4.0,0.1,0.0014," Graphical Implementation Of");
 		glColor3f(0.0,1.0,0.0);
-		DrawTextXY(-3.6,1.3,0.0,0.0010,"     Pallavi(1ST14CS738)    Abhinav(1ST14CS700) ");
+		DrawTextXY(-3.2,2.5,0.0,0.0039,"CATHODE RAY TUBE");
+			glColor3f(1.0,0.0,0.0);
+		DrawTextXY(-1.0,1.5,0.0,0.0013,"Submitted By:    ");
+		glColor3f(0.0,1.0,0.0);
+		DrawTextXY(-3.6,1.0,0.0,0.0011," Pallavi Purohit(1ST14CS738)     Abhinav Agnihotry(1ST14CS700) ");
 		glColor3f(1.0,0.0,0.0);
-		DrawTextXY(-2.3,0.4,0.0,0.0014,"Under the guidance of:");
+		DrawTextXY(-2.5,0.5,0.0,0.0013,"      Under the guidance of:");
 		glColor3f(0.9,0.2,0.6);
-		DrawTextXY(-1.4,0.0,0.0,0.0017,"    Mr.SRINATH.K.S B.E.,M.Tech.    ");
-		DrawTextXY(-1.2,-0.2,0.0,0.001,"    Lecturer,Dept. Of CS&E");
+		DrawTextXY(-2.4,0.0,0.0,0.0015,"  Mr.SRINATH.K.S B.E.,M.Tech.    ");
+		DrawTextXY(-1.2,-0.4,0.0,0.001,"Lecturer,Dept. Of CS&E");
+		DrawTextXY(-1.0,-0.7,0.0,0.001,"   SaIT");
 
-		DrawTextXY(-0.5,-1.0,0.0,0.0019,"    SaIT");
-		//geppetto edit begins
+		DrawTextXY(1.4,-1.6,0.0,0.0007," Press C to continue  ");
+				//geppetto edit begins
 		glColor3f(0.0,0.5,0.5);
-		DrawTextXY(-0.7,-1.2,0.0,0.0013,"Sambhram Institute Of Technology,M.S.Palya,B'lore");
+		DrawTextXY(-3.5,-1.2,0.0,0.0013," Sambhram Institute Of Technology,M.S.Palya,B'lore");
 
 
 		borderfunc(4,0,3,9);
