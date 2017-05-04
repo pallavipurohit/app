@@ -2,13 +2,16 @@
 #include<GL/glut.h>
 #include<string.h>
 #include<time.h>
+#pragma warning (disable : 4305)
+#pragma warning (disable : 4244)
+
 void cyc_draw();
 
 
 #define TEXTID 3     
 int flag;					//to initialize the window
-float  col=0,ang=0,an=0;
-float f=0,t=0,l=0,t1=0,t2=0;
+float  col=0.0f,ang=0.0f,an=0.0f;
+float f=0.0f,t=0.0f,l=0.0f,t1=0.0f,t2=0.0f;
 int n=0,nn=0 ,w;
 int m=0,s=4,cc=0,state1=0;
 float va=0.02;
@@ -22,7 +25,7 @@ float x1,y1,z1;
 float c1=1,c2=0,c3=0;
 float c4=1,c5=1,c6=1;
 
-static GLfloat theta[] = {0.0,0.0,0.0};
+static GLfloat theta[] = {0.0f,0.0f,0.0f};
 static GLint axis = 2;
 static GLdouble viewer[]= {0.0, 0.0, 7.0}; /* initial viewer location */
 char text[]={"CATHODE RAY TUBE"};
@@ -54,6 +57,10 @@ GLfloat circles[][2]={{-1.0,4.0},{.9,3.9}};
 	{1.0,0.0,1.0}, {1.0,1.0,1.0}, {1.0,0.0,1.0}};
 
   */
+
+//Border points
+
+		GLfloat border[][2] = {{-3.8,5.1},{3.8,5.1},{3.8,-2.5},{-3.8,-2.5},{-3.6,5.1},{3.6,5.1},{3.8,4.8},{3.8,-2.2},{3.6,-2.5},{-3.6,-2.5},{-3.8,-2.2},{-3.8,4.8}};
 
 
 //pixel points
@@ -111,7 +118,7 @@ void keyboard(GLubyte,GLint, GLint );
 void polygon(int a, int b, int c , int d)
     {
     glLineWidth(2);
-    if(a==6&b==7&c==4&d==5)  //display black colour
+    if(a==6 && b==7 && c==4 && d==5)  //display black colour
     {
 
         glBegin(GL_POLYGON);
@@ -503,7 +510,7 @@ void menu(int s)  //design menu
 {
     if(s==0)
     {
-        for(w=0;w<=strlen(elee);w++)
+        for(w=0;w<=(int)strlen(elee);w++)
        {
        glRasterPos3f(-2,2,0);
        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,elee[w]);
@@ -605,24 +612,24 @@ void electrmotion()                //Apply the motion effect for electron
     }
 	
 	
-	if(decy<=decyy&state2==1)
+	if(decy<=decyy && state2==1)
 	{
 		decy=decy+0.02;
 	}
 
 
-	if(incy>=incyy&state2==1)
+	if(incy>=incyy && state2==1)
 	{
     incy=incy-0.02;
 	}
 
-	if(decy>=decyy&state2==1)
+	if(decy>=decyy && state2==1)
 	{
 		state11=1;
 	}
 
 
-	if(incy<=incyy&state2==1)
+	if(incy<=incyy && state2==1)
 	{
 		state12=1;
 	}
@@ -635,22 +642,22 @@ void electrmotion()                //Apply the motion effect for electron
 
 
 
-	if(incy1<=incyy1&state6==1)//for magnet slow motion
+	if(incy1<=incyy1 && state6==1)//for magnet slow motion
 	{
 		incy1=incy1+0.017;
 	}
 
-	else if(incy1>=incyy1&state6==1)
+	else if(incy1>=incyy1 && state6==1)
 	{
 		state9=1;
 	}
 
-	if(incy1>=incyy1&state7==1)
+	if(incy1>=incyy1 && state7==1)
 	{
 	    state10=1;
 	}
 
-	if(incy1>=incyy1&state6==1&state8==0)//invert the magnet
+	if(incy1>=incyy1 && state6==1 && state8==0)//invert the magnet
 	{
 		if(t1<=300)
 		{
@@ -695,8 +702,9 @@ void DrawTextXY(double x,double y,double z,double scale,char *s)
    glPushMatrix();
    glTranslatef(x,y,z);
    glScalef(scale,scale,scale);
-   for (i=0;i < strlen(s);i++)
+   for (i=0;i < (int)strlen(s);i++)
    glutStrokeCharacter(GLUT_STROKE_MONO_ROMAN,s[i]);
+   
    glPopMatrix();
 }
 
@@ -707,7 +715,7 @@ void keys(unsigned char key, int x, int y)
 
    if(key == 'e')
    {
-       for(w=0;w<=strlen(elee);w++)
+       for(w=0;w<=(int)strlen(elee);w++)
        {
        glRasterPos3f(-2,2,0);
        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,elee[w]);
@@ -824,7 +832,7 @@ void display()  // crt_display the all the objects
             glClearColor(0,0.5,1,1);
             glColor3f(1,1,0);
             glRasterPos3f(1.5,0,0);
-            for(w=0;w<=strlen(elee);w++)
+            for(w=0;w<=(int)strlen(elee);w++)
                 {
 
 
@@ -851,7 +859,7 @@ void display()  // crt_display the all the objects
             glClearColor(0,0.5,1,1);
             glColor3f(1,1,0);
             glRasterPos3f(1.5,0,0);
-            for(w=0;w<=strlen(text4);w++)
+            for(w=0;w<=(int)strlen(text4);w++)
                 {
 
 
@@ -869,7 +877,7 @@ void display()  // crt_display the all the objects
                 glFlush();
                 glutSwapBuffers();
                 }
-            if(state3==0&state13==0)
+            if(state3==0 && state13==0)
                 {
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -891,7 +899,7 @@ void display()  // crt_display the all the objects
     magnd();
 
     glRasterPos3f(3.3,-2.3,0);
-    for(w=0;w<=strlen(text);w++)
+    for(w=0;w<=(int)strlen(text);w++)
         {
         glColor3f(1,1,0);
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,text[w]);
@@ -902,7 +910,7 @@ void display()  // crt_display the all the objects
     glVertex3f(-3.2,0.2,0);
     glVertex3f(-2.5,1,1);
     glEnd();
-    for(w=0;w<=strlen(text1);w++)
+    for(w=0;w<=(int)strlen(text1);w++)
         {
         glutBitmapCharacter(GLUT_BITMAP_9_BY_15,text1[w]);
         }
@@ -911,7 +919,7 @@ void display()  // crt_display the all the objects
     glVertex3f(-1.7,0.2,0);
     glVertex3f(-1.75,0.7,1.1);
     glEnd();
-    for(w=0;w<=strlen(text2);w++)
+    for(w=0;w<=(int)strlen(text2);w++)
         {
         glutBitmapCharacter(GLUT_BITMAP_9_BY_15,text2[w]);
         }
@@ -923,7 +931,7 @@ void display()  // crt_display the all the objects
     glVertex3f(3,0,0);//$$$$
     glVertex3f(2.2,1,1); //$$$$
     glEnd();
-    for(w=0;w<=strlen(text3);w++)
+    for(w=0;w<=(int)strlen(text3);w++)
         {
         glutBitmapCharacter(GLUT_BITMAP_9_BY_15,text3[w]);
         }
@@ -938,7 +946,7 @@ void display()  // crt_display the all the objects
     glEnd();
 
 
-    for(w=0;w<=strlen(text5);w++)
+    for(w=0;w<=(int)strlen(text5);w++)
         {
         glutBitmapCharacter(GLUT_BITMAP_9_BY_15,text5[w]);
         }
@@ -1238,16 +1246,16 @@ for(f=0;f<=4.75;f=f+0.08,z=z+y)            //display electron as points
         {
             cc=2;
     }
-    if(state2==1&state11==1&state12==1)
+    if(state2==1 && state11==1 && state12==1)
         {
             cc=3;
 
         }
-    if(state6==1&state9==1)
+    if(state6==1 && state9==1)
         {
             cc=3;
         }
-    if(state7==1&state10==1)
+    if(state7==1 && state10==1)
         {
             cc=4;
         }
@@ -1334,7 +1342,7 @@ switch(cc)
 			{
 				glColor3f(0,t,0);
 				glVertex3f(-2.5+f,y2,1);
-				y2=y2+0.02;    //0.02
+				y2 = y2+0.02;    //0.02
 			}
 			else
 			{
@@ -1705,6 +1713,28 @@ void t_letter()
 */
 
 
+void borderfunc(int a, int b, int c, int d)
+{
+	glBegin(GL_POLYGON);
+	
+	glColor3f(0.0f, 0.36f, 0.9f);
+	glVertex2fv(border[a]);
+
+	glColor3f(0.0f, 0.36f, 0.9f);
+	glVertex2fv(border[b]);
+	
+	glColor3f(0.0f, 0.36f, 0.9f);
+	glVertex2fv(border[c]);
+	
+	glColor3f(0.0f, 0.36f, 0.90f);
+	glVertex2fv(border[d]);
+	
+	glEnd();
+}
+
+
+
+
                     //MODIFIED
 void cover()//Main screen content
 {
@@ -1718,285 +1748,31 @@ void cover()//Main screen content
 
 		//glColor3f(1.00,0.20,0.10);
 		glLoadName(TEXTID);
-
-		DrawTextXY(-2.0,3.5,0.1,0.0014," Graphical Implementation Of");
-		DrawTextXY(-2.7,1.0,0.0,0.0022," CATHODE RAY TUBE");
-		DrawTextXY(1.4,-1.6,0.0,0.0007," Press C to continue  ");
-		DrawTextXY(-1.0,0.10,0.0,0.0015,"  Submitted By:    ");
+	
+		DrawTextXY(-2.0,4.0,0.1,0.0014," Graphical Implementation Of");
 		glColor3f(0.0,1.0,0.0);
-		DrawTextXY(-3.6,1.3,0.0,0.0016," Pallavi(1ST14CS738)    Abhinav(1ST14CS700) ");
+		DrawTextXY(-3.2,2.5,0.0,0.0039,"CATHODE RAY TUBE");
+			glColor3f(1.0,0.0,0.0);
+		DrawTextXY(-1.0,1.5,0.0,0.0013,"Submitted By:    ");
+		glColor3f(0.0,1.0,0.0);
+		DrawTextXY(-3.6,1.0,0.0,0.0011," Pallavi Purohit(1ST14CS738)     Abhinav Agnihotry(1ST14CS700) ");
 		glColor3f(1.0,0.0,0.0);
-		DrawTextXY(-2.3,0.4,0.0,0.0014,"Under the guidance of:");
+		DrawTextXY(-2.5,0.5,0.0,0.0013,"      Under the guidance of:");
 		glColor3f(0.9,0.2,0.6);
-		DrawTextXY(-1.4,0.0,0.0,0.0017,"    Mr.SRINATH.K.S B.E.,M.Tech.    ");
-		DrawTextXY(-1.2,-0.2,0.0,0.001,"    Lecturer,Dept. Of CS&E");
+		DrawTextXY(-2.4,0.0,0.0,0.0015,"  Mr.SRINATH K.S. B.E.,M.Tech.    ");
+		DrawTextXY(-1.2,-0.4,0.0,0.001,"Lecturer,Dept. Of CS&E");
+		DrawTextXY(-1.0,-0.7,0.0,0.001,"   SaIT");
 
-		DrawTextXY(-0.5,-1.0,0.0,0.0019,"    SaIT");
-		//geppetto edit begins
+		DrawTextXY(1.4,-1.6,0.0,0.0010," Press C to continue  ");
+				//geppetto edit begins
 		glColor3f(0.0,0.5,0.5);
-		DrawTextXY(-0.7,-1.2,0.0,0.0013,"Sambhram Institute Of Technology,M.S.Palya,B'lore");
+		DrawTextXY(-3.5,-1.2,0.0,0.0013," Sambhram Institute Of Technology,M.S.Palya,B'lore");
 
 
-		
-	//BORDER
-	glPointSize(8);
-	glBegin(GL_LINES);
-	glColor3f(1.0,0.0,0.0);
-	glVertex2f(-3.8,-3.8);
-	glVertex2f(-3.8,5.1);
-
-	glVertex2f(-3.8,-3.8);
-	glVertex2f(5.1,-3.8);
-	
-	glVertex2f(5.1,5.1);
-	glVertex2f(5.1,5.1);
-
-	glVertex2f(5.1,5.1);
-	glVertex2f(-3.8,5.1);
-
-	glEnd();              //B1
-
-	
-	
-	glBegin(GL_LINES);
-	glColor3f(1.0,0.0,0.0);
-	glVertex2f(-3.6,-3.6);
-	glVertex2f(-3.6,5.1);
-
-	glVertex2f(-3.6,-3.6);
-	glVertex2f(5.1,-3.6);
-	
-	glVertex2f(5.1,5.1);
-	glVertex2f(5.1,5.1);
-
-	glVertex2f(5.1,5.1);
-	glVertex2f(-3.6,5.1);
-    glEnd();             //B2
-	
-	glBegin(GL_LINES);
-	glColor3f(1.0,0.0,0.0);
-	glVertex2f(-3.8,-3.8);
-	glVertex2f(-3.8,-2.5);
-
-	glVertex2f(-3.8,-3.8);
-	glVertex2f(-2.5,-3.8);
-	
-	glVertex2f(-2.5,-2.5);
-	glVertex2f(-2.5,-2.5);
-
-	glVertex2f(-2.5,-2.5);
-	glVertex2f(-3.8,-2.5);
-    glEnd();              //B3
-
-	glBegin(GL_LINES);
-	glColor3f(1.0,0.0,0.0);
-	glVertex2f(-3.6,-3.6);
-	glVertex2f(-3.6,-2.5);
-
-	glVertex2f(-3.6,-3.6);
-	glVertex2f(-2.5,-3.6);
-	
-	glVertex2f(-2.5,-2.5);
-	glVertex2f(-2.5,-2.5);
-
-	glVertex2f(-2.5,-2.5);
-	glVertex2f(-3.6,-2.5);
-    glEnd();              //B4
-
-	glBegin(GL_LINES);
-	glColor3f(1.0,0.0,0.0);
-	glVertex2f(3.6,3.6);
-	glVertex2f(3.6,5.1);
-
-	glVertex2f(3.6,3.6);
-	glVertex2f(5.1,3.6);
-	
-	glVertex2f(5.1,5.1);
-	glVertex2f(5.1,5.1);
-
-	glVertex2f(5.1,5.1);
-	glVertex2f(3.6,5.1);
-    glEnd();              //B5
-
-	glBegin(GL_LINES);
-	glColor3f(1.0,0.0,0.0);
-	glVertex2f(3.8,3.8);
-	glVertex2f(3.8,5.1);
-
-	glVertex2f(3.8,3.8);
-	glVertex2f(5.1,3.6);
-	
-	glVertex2f(5.1,5.1);
-	glVertex2f(5.1,5.1);
-
-	glVertex2f(5.1,5.1);
-	glVertex2f(3.8,5.1);
-    glEnd();              //B6
-
-	glBegin(GL_LINES);
-	glColor3f(1.0,0.0,0.0);
-	glVertex2f(3.8,3.8);
-	glVertex2f(3.8,-2.5);
-
-	glVertex2f(3.8,3.8);
-	glVertex2f(-2.5,3.8);
-	
-	glVertex2f(-2.5,-2.5);
-	glVertex2f(-2.5,-2.5);
-
-	glVertex2f(-2.5,-2.5);
-	glVertex2f(3.8,-2.5);
-    glEnd();              //B7
-
-	glBegin(GL_LINES);
-	glColor3f(1.0,0.0,0.0);
-	glVertex2f(3.6,3.6);
-	glVertex2f(3.6,-2.5);
-
-	glVertex2f(3.6,3.6);
-	glVertex2f(-2.5,3.6);
-	
-	glVertex2f(-2.5,-2.5);
-	glVertex2f(-2.5,-2.5);
-
-	glVertex2f(-2.5,-2.5);
-	glVertex2f(3.6,-2.5);
-    glEnd();              //B8
- 
-
-/*	glBegin(GL_LINES);
-	glColor3f(1.0,0.0,0.0);
-	glVertex2f(-3.8,-3.8);
-	glVertex2f(-3.8,5.1);
-
-	glVertex2f(-3.8,-3.8);
-	glVertex2f(5.1,-3.8);
-	
-	glVertex2f(5.1,5.1);
-	glVertex2f(5.1,5.1);
-
-	glVertex2f(5.1,5.1);
-	glVertex2f(-3.8,5.1);
-
-	glEnd();              //B9 */
-
-	glBegin(GL_LINES);
-	glColor3f(1.0,0.0,0.0);
-	glVertex2f(-3.8,-3.8);
-	glVertex2f(-3.8,4.8);
-
-	glVertex2f(-3.8,-3.8);
-	glVertex2f(4.8,-3.8);
-	
-	glVertex2f(4.8,4.8);
-	glVertex2f(4.8,4.8);
-
-	glVertex2f(4.8,4.8);
-	glVertex2f(-3.8,4.8);
-
-	glEnd();              //B10
-
-/*	glBegin(GL_LINES);
-	glColor3f(1.0,0.0,0.0);
-	glVertex2f(3.8,3.8);
-	glVertex2f(3.8,5.1);
-
-	glVertex2f(3.8,3.8);
-	glVertex2f(5.1,3.6);
-	
-	glVertex2f(5.1,5.1);
-	glVertex2f(5.1,5.1);
-
-	glVertex2f(5.1,5.1);
-	glVertex2f(3.8,5.1);
-    glEnd();              //B11 */
-
-	glBegin(GL_LINES);
-	glColor3f(1.0,0.0,0.0);
-	glVertex2f(3.8,3.8);
-	glVertex2f(3.8,4.8);
-
-	glVertex2f(3.8,3.8);
-	glVertex2f(4.8,3.8);
-	
-	glVertex2f(4.8,4.8);
-	glVertex2f(4.8,4.8);
-
-	glVertex2f(4.8,4.8);
-	glVertex2f(3.8,4.8);
-
-	glEnd();              //B12
-
-/*		glBegin(GL_LINES);
-	glColor3f(1.0,0.0,0.0);
-	glVertex2f(-3.8,-3.8);
-	glVertex2f(-3.8,-2.5);
-
-	glVertex2f(-3.8,-3.8);
-	glVertex2f(-2.5,-3.8);
-	
-	glVertex2f(-2.5,-2.5);
-	glVertex2f(-2.5,-2.5);
-
-	glVertex2f(-2.5,-2.5);
-	glVertex2f(-3.8,-2.5);
-    glEnd();              //B13 */
-
-		glBegin(GL_LINES);
-	glColor3f(1.0,0.0,0.0);
-	glVertex2f(-3.8,-3.8);
-	glVertex2f(-3.8,-2.2);
-
-	glVertex2f(-3.8,-3.8);
-	glVertex2f(-2.2,-3.8);
-	
-	glVertex2f(-2.2,-2.2);
-	glVertex2f(-2.2,-2.2);
-
-	glVertex2f(-2.2,-2.2);
-	glVertex2f(-3.8,-2.2);
-
-	glEnd();              //B14
-
-/*	glBegin(GL_LINES);
-	glColor3f(1.0,0.0,0.0);
-	glVertex2f(3.8,3.8);
-	glVertex2f(3.8,-2.5);
-
-	glVertex2f(3.8,3.8);
-	glVertex2f(-2.5,3.8);
-	
-	glVertex2f(-2.5,-2.5);
-	glVertex2f(-2.5,-2.5);
-
-	glVertex2f(-2.5,-2.5);
-	glVertex2f(3.8,-2.5);
-    glEnd();              //B15 */
-
-		glBegin(GL_LINES);
-	glColor3f(1.0,0.0,0.0);
-	glVertex2f(3.8,3.8);
-	glVertex2f(3.8,-2.2);
-
-	glVertex2f(3.8,3.8);
-	glVertex2f(-2.2,3.8);
-	
-	glVertex2f(-2.2,-2.2);
-	glVertex2f(-2.2,-2.2);
-
-	glVertex2f(-2.2,-2.2);
-	glVertex2f(3.8,-2.2);
-
-	glEnd();              //B16
-
-		
-
-
-
-
-
-
-
+		borderfunc(4,0,3,9);
+		borderfunc(10,3,2,7);
+		borderfunc(8,2,1,5);
+		borderfunc(6,1,0,11);
 
 	glFlush();			//Finish rendering
 	glutSwapBuffers();
@@ -2121,10 +1897,10 @@ void Display3(void)//Help screen content
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	
-	glClearColor(1.0, 1.0, 1.0, 1.0);
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 	glTranslatef(0.0,0.0,-6.0);	
-	glTranslatef(0.0,-1.3,0.0);
+	glTranslatef(0.0f,-1.3f,0.0f);
 	//DrawTextXY(-0.5,1.5,0.0,0.0022,"HELP");
 	DrawTextXY(-1.9,4.8,0.0,0.002," Cathod Ray Tube(CRT)");
 	
@@ -2140,13 +1916,13 @@ void Display3(void)//Help screen content
 	DrawTextXY(-2.7,-0.3,0.0,0.0013," 2.Raster system CRT");
 	DrawTextXY(-3.7,-1.0,0.0,0.0009," Options(press in working screen)");
 
-	glColor3f(1.0,0.0,0.0);
+	glColor3f(1.0f,0.0f,0.0f);
 	DrawTextXY(-3.0,1.0,0.0,0.0019," RED");
-	glColor3f(0.0,1.0,0.0);
+	glColor3f(0.0f,1.0f,0.0f);
 	DrawTextXY(-1.0,1.0,0.0,0.0019," GREEN");
-	glColor3f(0.0,0.0,1.0);
+	glColor3f(0.0f,0.0f,1.0f);
 	DrawTextXY(1.5,1.0,0.0,0.0019," BLUE");
-	glColor3f(0.3,0.3,0.0);
+	glColor3f(0.3f,0.3f,0.0f);
 	DrawTextXY(-3.2,-1.2,0.0,0.0008," e:APPLY A ELECTRIC FIELD ");
 	DrawTextXY(-3.2,-1.4,0.0,0.0008," E:REMOVE A ELECTRIC FIELD ");
 	DrawTextXY(-3.2,-1.6,0.0,0.0008," m:APPLY A MAGNETIC FIELD ");
@@ -2154,7 +1930,7 @@ void Display3(void)//Help screen content
 	DrawTextXY(-3.2,-2.0,0.0,0.0008," z:ZOOM IN ");
 	DrawTextXY(-3.2,-2.2,0.0,0.0008," Z:ZOOM OUT ");
 
-	glColor3f(0.3,0.3,0.3);
+	glColor3f(0.3f,0.3f,0.3f);
 	DrawTextXY(0.5,-1.0,0.0,0.0008,"     Press any c/C to continue... ");
 	DrawTextXY(0.5,-1.4,0.0,0.0008,"     Press any r/R to return... ");
 	DrawTextXY(0.5,-1.8,0.0,0.0008,"     Press any t/T to exit... ");
