@@ -1131,7 +1131,7 @@ void display()  // crt_display the all the objects
 		    //  sleep(20); 
             for (float j=0.0;j<=30000; (j++))
 			{}
-			//glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+			//glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 			//glutSwapBuffers();
             //glutPostRedisplay();
         }
@@ -1494,6 +1494,7 @@ void myReshape(int w, int h)//crt_first
 void init()
 {
     glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();           //$$$$$$$
     //gluOrtho2D(0.0,1000.0,0.0,100.0);
 }
 
@@ -1968,6 +1969,7 @@ int main(int argc,char **argv)
     glutDisplayFunc(cover);
     glutReshapeFunc(OnSize);
     glutKeyboardFunc(keyboard);
+	glEnable(GL_STENCIL_TEST);        //$$$$$check
     glutMainLoop();
     return 0;
 }
