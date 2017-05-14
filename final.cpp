@@ -1,3 +1,4 @@
+
 #include <stdlib.h>
 #include<GL/glut.h>
 #include<string.h>
@@ -1116,7 +1117,7 @@ void display()  // crt_display the all the objects
         glEnd();
         */
 
-        int i;
+        int i;							//dots on the screen
         for (i=0;i<=196;i++)
         {
             glLineStipple(1, 0xAAAA);
@@ -1126,11 +1127,12 @@ void display()  // crt_display the all the objects
             glColor3f(0.0,0.0,1.0);
             //glVertex3f(0,1.0,1.0);        //origin for the ray
             glVertex3fv(pixel[i]);
-            glPointSize(31);
             glEnd();
-            //  sleep(20);
-            glFlush();
-            //glutSwapBuffers();
+		    //  sleep(20); 
+            for (float j=0.0;j<=30000; (j++))
+			{}
+			//glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+			//glutSwapBuffers();
             //glutPostRedisplay();
         }
 
@@ -1226,13 +1228,13 @@ void display()  // crt_display the all the objects
                 glBegin(GL_POINTS);
                 if((-2.5+f)>-0.4)
                 {
-                    glColor3f(0,t,0);
+                    glColor3f(0,1.0,0);
                     glVertex3f(-2.5+f,yy,1);        //$$$$$$$$$
                     yy=yy+va;    //0.02
                 }
                 else
                 {
-                    glColor3f(0,t,0);
+                    glColor3f(0,1.0,0);
                     glVertex3f(-2.5+f,1,1);     //$$$$$$$$$
                 }
             }
@@ -1255,7 +1257,7 @@ void display()  // crt_display the all the objects
                 }
                 else
                 {
-                    glColor3f(0,t,0);
+                    glColor3f(0,1.0,0);
                     glVertex3f(-2.5+f,1,1);
                 }
             }
@@ -1272,13 +1274,13 @@ void display()  // crt_display the all the objects
                 glBegin(GL_POINTS);
                 if((-2.5+f)>0.0)
                 {
-                    glColor3f(0,t,0);
+                    glColor3f(0,1.0,0);
                     glVertex3f(-2.5+f,yyy,1);
                     yyy=yyy-0.03;    //0.02
                 }
                 else
                 {
-                    glColor3f(0,t,0);
+                    glColor3f(0,1.0,0);
                     glVertex3f(-2.5+f,1,1);
                 }
             }
@@ -1294,13 +1296,13 @@ void display()  // crt_display the all the objects
                 glBegin(GL_POINTS);
                 if((-2.5+f)>0.0)
                 {
-                    glColor3f(0,t,0);
+                    glColor3f(0,1.0,0);
                     glVertex3f(-2.5+f,y2,1);
                     y2 = y2+0.02;    //0.02
                 }
                 else
                 {
-                    glColor3f(0,t,0);
+                    glColor3f(0,1.0,0);
                     glVertex3f(-2.5+f,1,1);
                 }
             }
@@ -1821,8 +1823,6 @@ void Display2(void)//home screen content
     glClearColor(1.0, 1.0, 1.0, 0.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
-
-
 
     glTranslatef(0.0,0.0,-6.0);
     glTranslatef(0.0,-1.3,0.0);
