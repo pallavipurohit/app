@@ -8,7 +8,6 @@
 
 void cyc_draw();
 
-
 #define TEXTID 3
 int flag;                   //to initialize the window
 float  col=0.0f,ang=0.0f,an=0.0f;
@@ -63,6 +62,8 @@ GLfloat colors[][3] = {{0.35,0.35,0.35},{0.75,0.75,0.75},{0.35,0.35,0.35},{0.35,
 
 GLfloat border[][2] = {{-3.8,5.1},{3.8,5.1},{3.8,-2.5},{-3.8,-2.5},{-3.6,5.1},{3.6,5.1},{3.8,4.8},{3.8,-2.2},{3.6,-2.5},{-3.6,-2.5},{-3.8,-2.2},{-3.8,4.8}};
 
+
+GLfloat screenborder[][3] = {{2.16,0.0,0.0},{2.16,-0.72,-0.72},{2.16,-0.72,-0.68},{2.16,2.22,-0.68},{2.16,2.22,-0.72}};
 
 //pixel points
 
@@ -782,6 +783,31 @@ void mouse(int btn, int state, int x, int y)//crt_mouse
 
 
 
+
+void screenborderfunc(int a, int b, int c, int d)
+{
+    glBegin(GL_POLYGON);
+
+    glColor3f(1.0f, 0.0f, 0.0f);
+    glVertex3fv(screenborder[a]);
+
+    //glColor3f(1.0f, 0.0f, 0.0f);
+    glVertex3fv(screenborder[b]);
+
+   // glColor3f(1.0f, 0.0f, 0.0f);
+    glVertex3fv(screenborder[c]);
+
+   // glColor3f(1.0f, 0.0f, 0.0f);
+    glVertex3fv(screenborder[d]);
+
+    glEnd();
+}
+
+
+
+
+
+
 void display()  // crt_display the all the objects
 {
     /* Update  position in modelview matrix */
@@ -1118,25 +1144,28 @@ void display()  // crt_display the all the objects
         */
 
         int i;							//dots on the screen
+		
+
+		glBegin(GL_POINTS);
+		// for (K=0;K<=196;K++)
         for (i=0;i<=196;i++)
         {
-            glLineStipple(1, 0xAAAA);
-            glEnable(GL_LINE_STIPPLE);
             glPointSize(10);
-            glBegin(GL_POINTS);
-            glColor3f(0.0,0.0,1.0);
+           
+			glColor3f(0.0,0.0,1.0);
             //glVertex3f(0,1.0,1.0);        //origin for the ray
             glVertex3fv(pixel[i]);
-            glEnd();
-		    //  sleep(20); 
-            for (float j=0.0;j<=30000; (j++))
-			{}
-			//glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+			for (float j=0.0;j<=30000; j=j+1){}
+           
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			//glutSwapBuffers();
             //glutPostRedisplay();
         }
 
+	 glEnd();
 
+
+	 screenborderfunc(1,2,3,4);
 
             //$$$$$$
 
@@ -1164,11 +1193,6 @@ void display()  // crt_display the all the objects
             glEnd();
             */
             //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-
-
-
-
-
 
 
 
@@ -1454,7 +1478,11 @@ void display()  // crt_display the all the objects
             glVertex3f(-0.5,0.8,0.8);
             glEnd();
             }
-            glutCreateMenu(menu);
+
+		
+		
+
+			glutCreateMenu(menu);
             glutAttachMenu(GLUT_RIGHT_BUTTON);
             glutAddMenuEntry("Electric Field",0);
             glutAddMenuEntry("magnetic Field(Red=N,White=S)",1);
@@ -1519,6 +1547,8 @@ void CRT(GLfloat a,GLfloat b)
     glEnd();
 }
 
+
+/*
 void c_letter()
 {
     GLfloat q,w;
@@ -1630,7 +1660,7 @@ void t_letter()
     }//
 }
 
-
+*/
 
 
 
@@ -1820,18 +1850,18 @@ void cover()//Main screen content
 
 void Display2(void)//home screen content
 {
-    glClearColor(1.0, 1.0, 1.0, 0.0);
+    glClearColor(0.0, 0.0, 0.0, 0.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
     glTranslatef(0.0,0.0,-6.0);
     glTranslatef(0.0,-1.3,0.0);
-
-    DrawTextXY(-1.0,1.5,0.1,0.001,"OPTIONS");
-    glColor3f(0.00,0.90,0.10);
+	glColor3f(1.0,1.0,0.0);
+    DrawTextXY(-1.0,1.5,0.1,0.002,"OPTIONS");
+    glColor3f(1.0,0.0,0.0);
     DrawTextXY(0.0,0.80,0.0,0.0015,"PRESS C : EXECUTION");
     DrawTextXY(1.97,0.70,0.0,0.001," -");
-    glColor3f(0.00,0.90,0.10);
+    glColor3f(1.0,0.0,0.0);
     DrawTextXY(0.0,0.0,0.0,0.0015,"PRESS R : INTRODUCTION");
     DrawTextXY(1.92,-0.1,0.0,0.0013," -");
     DrawTextXY(0.0,-0.80,0.0,0.0015,"PRESS T : EXIT");
@@ -1847,7 +1877,7 @@ void Display3(void)//Help screen content
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
-    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
     glTranslatef(0.0,0.0,-6.0);
     glTranslatef(0.0f,-1.3f,0.0f);
@@ -1940,6 +1970,7 @@ void keyboard1(unsigned char key,int x,int y)//home screen keyboard
 
     if(key=='t'||key=='T')
         exit(0);
+	//glutSwapBuffers();
 }
 
 void keyboard(GLubyte key, GLint x, GLint y) //main screen keyboard
@@ -1968,6 +1999,7 @@ int main(int argc,char **argv)
     glutDisplayFunc(cover);
     glutReshapeFunc(OnSize);
     glutKeyboardFunc(keyboard);
+	glEnable(GL_DEPTH_TEST);
     glutMainLoop();
     return 0;
 }
