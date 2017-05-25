@@ -52,8 +52,8 @@ GLfloat electrodeup[][3]={{-0.10,1.8,0.6},{-0.10,1.8,0.8},{0.10,1.8,0.8},{0.10,1
 GLfloat electrodedn[][3]={{-0.10,0.25,0.6},{-0.10,0.25,0.8},{0.10,0.25,0.8},{0.10,0.25,0.6},{-0.10,-1.45,0.6},{-0.10,-1.45,0.8},{0.10,-1.45,0.8},{0.10,-1.45,0.6}} ;                         //upper part of plate
 //matrix for colour
 
-GLfloat colors[][3] = {{0.35,0.35,0.35},{0.75,0.75,0.75},{0.35,0.35,0.35},{0.35,0.35,0.35},{0.35,0.35,0.35},{0.75,0.75,0.75},
-{0.35,0.35,0.35},{0.75,0.75,0.75},{0.35,0.35,0.35},{0.75,0.75,0.75},{0.35,0.35,0.35},{0.35,0.35,0.35}};
+GLfloat colors[][3] = {{0.4,0.4,0.4},{0.4,0.4,0.4},{0.6,0.6,0.6},{0.6,0.6,0.6},{0.6,0.6,0.6},{0.6,0.6,0.6},
+{0.4,0.4,0.4},{0.4,0.4,0.4},{0.4,0.4,0.4},{0.4,0.4,0.4},{0.6,0.6,0.6},{0.6,0.6,0.6}};
 
 
 //Border points
@@ -61,7 +61,8 @@ GLfloat colors[][3] = {{0.35,0.35,0.35},{0.75,0.75,0.75},{0.35,0.35,0.35},{0.35,
 GLfloat border[][2] = {{-3.8,5.1},{3.8,5.1},{3.8,-2.5},{-3.8,-2.5},{-3.6,5.1},{3.6,5.1},{3.8,4.8},{3.8,-2.2},{3.6,-2.5},{-3.6,-2.5},{-3.8,-2.2},{-3.8,4.8}};
 
 
-GLfloat screenborder[][3] = {{2.16,0.0,0.0},{2.16,-0.72,-0.72},{2.16,-0.72,-0.68},{2.16,2.22,-0.68},{2.16,2.22,-0.72}};
+GLfloat screenborder[][3] = {{2.16,0.0,0.0},/*1*/{2.16,-0.76,-0.72},{2.16,-0.76,-0.68},{2.16,2.35,-0.68},{2.16,2.35,-0.72},/*5*/{2.16,2.27,-0.72},
+{2.16,2.27,2.32},{2.16,2.35,2.32},{2.16,2.35,2.28},/*9*/{2.16,-0.76,2.28},{2.16,-0.76,2.32},{2.16,-0.68,2.32},{2.16,-0.68,-0.72}};
 
 //pixel points
 
@@ -298,12 +299,13 @@ void eledraw(int a,int b,int c,int d) //Draw the two Electrodes
 
 void powerd(int a,int b,int c,int d)  //Draw the Power supply Cube
 {
+
     glBegin(GL_POLYGON);//power supply
-    glColor3f(1,0.5,1);
+    glColor3f(0,0.5,0.5);
     glVertex3fv(powsup[a]);
     glColor3f(1,0.5,0.25);
     glVertex3fv(powsup[b]);
-    glColor3f(1,0.5,0.5);
+     glColor3f(0,0.5,0.5);
     glVertex3fv(powsup[c]);
     glColor3f(1,0.5,0.25);
     glVertex3fv(powsup[d]);
@@ -778,7 +780,7 @@ void screenborderfunc(int a, int b, int c, int d)
 {
     glBegin(GL_POLYGON);
 
-    glColor3f(1.0f, 0.0f, 0.0f);
+    glColor3f(0.35f, 0.35f, 0.35f);
     glVertex3fv(screenborder[a]);
 
     //glColor3f(1.0f, 0.0f, 0.0f);
@@ -841,10 +843,10 @@ void screenborderfunc(int a, int b, int c, int d)
 void display()  // crt_display the all the objects
 {
     /* Update  position in modelview matrix */
-    glLoadIdentity();
-    gluLookAt(viewer[0],viewer[1],viewer[2], 0.0, 0.0, 0.0, 0.0, 100.0, 0.0);
+   // glLoadIdentity();
+    //gluLookAt(viewer[0],viewer[1],viewer[2], 0.0, 0.0, 0.0, 0.0, 100.0, 0.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//glClearColor(1.0,1.0,1.0,1.0);
+	glClearColor(0.6,0.839,1,1);
 /*
 	glRotatef(theta[0], 1.0, 0.0, 0.0);
 	glRotatef(theta[1], 0.0, 1.0, 0.0);
@@ -854,7 +856,7 @@ void display()  // crt_display the all the objects
     if(state3==1)
     {
         glClearColor(0,0.5,1,1);
-        glColor3f(1,1,0);
+        glColor3f(0.6,0.6,0);
         glRasterPos3f(1.5,0,0);
         for(w=0;w<=(int)strlen(elee);w++)
         {
@@ -903,10 +905,10 @@ void display()  // crt_display the all the objects
     if(state3==0 && state13==0)
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        /* Update  position in modelview matrix                         //$$$$$$$$$
+        // Update  position in modelview matrix                         //$$$$$$$$$
 
         glLoadIdentity();
-        gluLookAt(viewer[0],viewer[1],viewer[2], 0.0, 0.0, 0.0, 0.0, 100.0, 0.0);*/
+        gluLookAt(viewer[0],viewer[1],viewer[2], 0.0, 0.0, 0.0, 0.0, 100.0, 0.0);
 
         /* rotate cube */
        glRotatef(theta[0], 0.0, 1.0, 0.0);
@@ -922,7 +924,7 @@ void display()  // crt_display the all the objects
         glRasterPos3f(0,-3.3,0);
         for(w=0;w<=(int)strlen(text);w++)
         {
-            glColor3f(1,1,0);											//color of all the desc
+             glColor3f(0.6,0,0);										//color of all the labels
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,text[w]);
         }
 
@@ -1252,32 +1254,62 @@ float j,g=0.0,h=0.0,k=0.0;
 	 glEnd();
  }
 */
-
+//-----------------------------------------------------
 //int k;
-float j,a=0.0,b=0.0,c=0.0,i=0.0,m=0.0,colr=0.0,colg=0.0,colb=0.0;
+glPointSize(10);
+	glBegin(GL_POINTS);
+	float j,a=0.0,b=0.0,c=0.0,i=0.0,m=0.0,colr=0.0,colg=0.0,colb=0.0;
 	for (i=-0.5;i<=2.3;i=i+0.2)
 		for(m=-0.5;m<=2.3;m=m+0.2)
 		{		colr = rand() % 2;
 				colg = rand() % 2;
 				colb = rand() % 2;
-				glBegin(GL_POINTS);
 				glPointSize(10);
-				glColor3f(colr,colg,colb);
+				glColor3f(0.0,0.0,colb);
 				glVertex3f(2.2,i,m);
-					for ( j=0.0;j<=30000; j=j+1){}
-					for ( j=0.0;j<=30000; j=j+1){}
-				/*	for ( j=0.0;j<=30000; j=j+1){}
-					for ( j=0.0;j<=30000; j=j+1){}
-					for ( j=0.0;j<=30000; j=j+1){}
-				//	for ( j=0.0;j<=30000; j=j+1){} */
-				glEnd();
-				glFlush();
+				for ( j=0.0;j<=30000; j=j+1){}
+				for ( j=0.0;j<=30000; j=j+1){}
+				for ( j=0.0;j<=30000; j=j+1){}
+				//for ( j=0.0;j<=30000; j=j+1){} 
 				//glutSwapBuffers();
 		}
 
+	glEnd();
 
 
-	screenborderfunc(1,2,3,4);
+
+/*
+int i;							//dots on the screen
+		
+
+		glBegin(GL_POINTS);
+		// for (K=0;K<=196;K++)
+        for (i=0;i<=196;i++)
+        {
+            glPointSize(10);
+           
+			glColor3f(0.0,0.0,1.0);
+            //glVertex3f(0,1.0,1.0);        //origin for the ray
+            glVertex3fv(pixel[i]);
+			for (float j=0.0;j<=30000; j=j+1){}
+           
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			//glutSwapBuffers();
+            glutPostRedisplay();
+        }
+
+ glEnd();
+
+*/
+
+
+
+
+
+			screenborderfunc(1,2,3,4);
+			screenborderfunc(4,5,6,7);
+			screenborderfunc(7,8,9,10);
+			screenborderfunc(10,11,12,1);
 
             //$$$$$$
 
@@ -1608,6 +1640,98 @@ float j,a=0.0,b=0.0,c=0.0,i=0.0,m=0.0,colr=0.0,colg=0.0,colb=0.0;
         glEnd();
 
 
+		//different color at the point where electrons start spliting
+		glBegin(GL_POLYGON);
+        glLineWidth(10);
+        glColor3f(0.2,0.2,0.2);
+        glVertex3f(0.005,0.7,1.2);
+
+        glColor3f(0.2,0.2,0.2);
+        glVertex3f(0.005,1.2,1.2);
+
+        glColor3f(0.2,0.2,0.2);
+        glVertex3f(0.005,1.2,0.7);
+
+        glColor3f(0.2,0.2,0.2);
+        glVertex3f(0.005,0.7,0.7);
+        glEnd();
+
+
+		
+		//different color at the back panel
+		glBegin(GL_POLYGON);
+        glLineWidth(10);
+        glColor3f(0.3,0.3,0.3);
+        glVertex3f(2.15,-0.7,-0.695);
+
+         glColor3f(0.3,0.3,0.3);
+        glVertex3f(2.15,2.3,-0.695);
+
+         glColor3f(0.3,0.3,0.3);
+        glVertex3f(0.005,1.2,0.705);
+
+         glColor3f(0.3,0.3,0.3);
+        glVertex3f(0.005,0.7,0.705);
+        glEnd();
+
+
+
+		
+		//different color at the back panel from outside
+		glBegin(GL_POLYGON);
+        glLineWidth(10);
+        glColor3f(0.3,0.3,0.3);
+        glVertex3f(2.15,-0.7,-0.705);
+
+        glColor3f(0.3,0.3,0.3);
+        glVertex3f(2.15,2.3,-0.705);
+
+         glColor3f(0.3,0.3,0.3);
+        glVertex3f(0.005,1.2,0.695);
+
+         glColor3f(0.3,0.3,0.3);
+        glVertex3f(0.005,0.7,0.695);
+        glEnd();
+
+
+			
+		//different color at the back panel of tube from outside
+		glBegin(GL_POLYGON);
+        glLineWidth(10);
+        glColor3f(0.3,0.3,0.3);
+        glVertex3f(-2.5,0.7,0.695);
+
+        glColor3f(0.3,0.3,0.3);
+        glVertex3f(-2.5,1.2,0.695);
+
+         glColor3f(0.3,0.3,0.3);
+        glVertex3f(0.005,1.2,0.695);
+
+         glColor3f(0.3,0.3,0.3);
+        glVertex3f(0.005,0.7,0.695);
+        glEnd();
+
+
+
+	
+		//different color at the back panel of tube from inside
+		glBegin(GL_POLYGON);
+        glLineWidth(10);
+        glColor3f(0.3,0.3,0.3);
+        glVertex3f(-2.5,0.7,0.705);
+
+        glColor3f(0.3,0.3,0.3);
+        glVertex3f(-2.5,1.2,0.705);
+
+         glColor3f(0.3,0.3,0.3);
+        glVertex3f(0.005,1.2,0.705);
+
+         glColor3f(0.3,0.3,0.3);
+        glVertex3f(0.005,0.7,0.705);
+        glEnd();
+
+
+
 
 
         if(state12!=1)
@@ -1616,69 +1740,70 @@ float j,a=0.0,b=0.0,c=0.0,i=0.0,m=0.0,colr=0.0,colg=0.0,colb=0.0;
 
             glBegin(GL_POLYGON);//vertical deflecting plates // down
             glLineWidth(10);
-            glColor3f(0.5,0,0.5);
+            glColor3f(0.67,0.52549,0);
             glVertex3f(-1.5,1.1,0.8);
 
-            glColor3f(0.5,0,0.5);
+            //glColor3f(0.5,0,0.5);
             glVertex3f(-1.5,1.1,1.1);
 
-            glColor3f(0.5,0,0.5);
+            //glColor3f(0.5,0,0.5);
             glVertex3f(-0.95,1.1,1.1);
 
-            glColor3f(0.5,0,0.5);
+            //glColor3f(0.5,0,0.5);
             glVertex3f(-0.95,1.1,0.8);
             glEnd();
 
+
             glBegin(GL_POLYGON);//upper plates
             glLineWidth(10);
-            glColor3f(0.5,0,0.5);
+            glColor3f(0.67,0.52549,0);
             glVertex3f(-1.5,0.8,0.8);
 
-            glColor3f(0.5,0,0.5);
+            //glColor3f(0.5,0,0.5);
             glVertex3f(-1.5,0.8,1.1);
 
-            glColor3f(0.5,0,0.5);
+            //glColor3f(0.5,0,0.5);
             glVertex3f(-0.95,0.8,1.1);
 
-            glColor3f(0.5,0,0.5);
+            //glColor3f(0.5,0,0.5);
             glVertex3f(-0.95,0.8,0.8);
             glEnd();
 
-			 glBegin(GL_POLYGON);//back vertical plates
+			 glBegin(GL_POLYGON);//back horizontal plates
             glLineWidth(10);
-            glColor3f(0.5,0,0.5);
+            glColor3f(0.5,0.25,0);
             glVertex3f(-0.1,0.75,0.8);
 
-            glColor3f(0.5,0,0.5);
+            //glColor3f(0.5,0,0.5);
             glVertex3f(-0.75,0.75,0.8);
 
-            glColor3f(0.5,0,0.5);
+            //glColor3f(0.5,0,0.5);
             glVertex3f(-0.75,1.15,0.8);
 
-            glColor3f(0.5,0,0.5);
+           // glColor3f(0.5,0,0.5);
             glVertex3f(-0.1,1.15,0.8);
             glEnd();
 
 
-			glBegin(GL_POLYGON);//front vertical plates
+			glBegin(GL_POLYGON);//front horizontal plates
             glLineWidth(10);
-            glColor3f(0.5,0,0.5);
+            glColor3f(0.67,0.349,0);
             glVertex3f(-0.1,0.75,1.1);
 
-            glColor3f(0.5,0,0.5);
+            //glColor3f(0.5,0,0.5);
             glVertex3f(-0.75,0.75,1.1);
 
-            glColor3f(0.5,0,0.5);
+            //glColor3f(0.5,0,0.5);
             glVertex3f(-0.75,1.15,1.1);
 
-            glColor3f(0.5,0,0.5);
+           // glColor3f(0.5,0,0.5);
             glVertex3f(-0.1,1.15,1.1);
             glEnd();
 
         }
 
 						
-		    glColor3f(0,0,0.5);
+		    glColor3f(0.9,0.9,0);
 			drawCube(-2.1,0.98,0.98);
 
 
@@ -1922,16 +2047,16 @@ void borderfunc(int a, int b, int c, int d)
 {
     glBegin(GL_POLYGON);
 
-    glColor3f(0.0f, 0.36f, 0.9f);
+    glColor3f(0.18f, 0.7215f, 0.7215f);
     glVertex2fv(border[a]);
 
-    glColor3f(0.0f, 0.36f, 0.9f);
+     glColor3f(0.18f, 0.7215f, 0.7215f);
     glVertex2fv(border[b]);
 
-    glColor3f(0.0f, 0.36f, 0.9f);
+     glColor3f(0.18f, 0.7215f, 0.7215f);
     glVertex2fv(border[c]);
 
-    glColor3f(0.0f, 0.36f, 0.90f);
+     glColor3f(0.18f, 0.7215f, 0.7215f);
     glVertex2fv(border[d]);
 
     glEnd();
@@ -1946,14 +2071,14 @@ void cover()//Main screen content
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
-    glClearColor(0.0, 0.0, 0.0, 0.0);
+    glClearColor(0.149, 0.149, 0.149, 0.0);
 
     glTranslatef(0.0,0.0,-6.0);
     glTranslatef(0.0,-1.3,0.0);
 
     //glColor3f(1.00,0.20,0.10);
     glLoadName(TEXTID);
-
+	 glColor3f(1.0,0.0,0.0);
     DrawTextXY(-2.0,4.0,0.1,0.0014," Graphical Implementation Of");
     glColor3f(0.0,1.0,0.0);
     DrawTextXY(-3.2,2.5,0.0,0.0039,"CATHODE RAY TUBE");
@@ -1968,7 +2093,8 @@ void cover()//Main screen content
     DrawTextXY(-1.2,-0.4,0.0,0.001,"Lecturer,Dept. Of CS&E");
     DrawTextXY(-1.0,-0.7,0.0,0.001,"   SaIT");
 
-    DrawTextXY(1.4,-1.6,0.0,0.0010," Press C to continue  ");
+    DrawTextXY(1.3,-1.75,0.0,0.0008," Press any key to continue  ");
+	DrawTextXY(-3.4,-1.75,0.0,0.0008,"Press Esc to Exit  ");
     //geppetto edit begins
     glColor3f(0.0,0.5,0.5);
     DrawTextXY(-3.5,-1.2,0.0,0.0013," Sambhram Institute Of Technology,M.S.Palya,B'lore");
@@ -2073,14 +2199,14 @@ void cover()//Main screen content
 
 void Display2(void)//home screen content
 {
-    glClearColor(0.0, 0.0, 0.0, 0.0);
+   glClearColor(0.149, 0.149, 0.149, 0.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
     glTranslatef(0.0,0.0,-6.0);
     glTranslatef(0.0,-1.3,0.0);
 	glColor3f(1.0,1.0,0.0);
-    DrawTextXY(-1.0,1.5,0.1,0.002,"OPTIONS");
+    DrawTextXY(-1.0,1.5,0.1,0.003,"OPTIONS");
     glColor3f(1.0,0.0,0.0);
     DrawTextXY(0.0,0.80,0.0,0.0015,"PRESS C : EXECUTION");
     DrawTextXY(1.97,0.70,0.0,0.001," -");
@@ -2100,13 +2226,14 @@ void Display3(void)//Help screen content
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
-    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    glClearColor(1.0f, 0.7f, 0.4f, 0.0f);
 
     glTranslatef(0.0,0.0,-6.0);
     glTranslatef(0.0f,-1.3f,0.0f);
     //DrawTextXY(-0.5,1.5,0.0,0.0022,"HELP");
-    DrawTextXY(-1.9,4.8,0.0,0.002," Cathod Ray Tube(CRT)");
-
+	glColor3f(0.0f,0.0f,0.6f);
+    DrawTextXY(-1.9,4.32,0.0,0.002," Cathod Ray Tube(CRT)");
+glColor3f(0.0f,0.0f,0.0f);
     DrawTextXY(-3.7,3.8,0.0,0.00088,"* It is the most common output device used by most of the graphics system.");
     DrawTextXY(-3.7,3.4,0.0,0.00088,"* Digital o/p produced by the processor is given to digital to anolog converter.");
     DrawTextXY(-3.7,3.0,0.0,0.00088,"* Anlog voltages hences produced are applied across the x and y deflection plates.");
@@ -2125,7 +2252,7 @@ void Display3(void)//Help screen content
     DrawTextXY(-1.0,1.0,0.0,0.0019," GREEN");
     glColor3f(0.0f,0.0f,1.0f);
     DrawTextXY(1.5,1.0,0.0,0.0019," BLUE");
-    glColor3f(0.3f,0.3f,0.0f);
+    glColor3f(0.0f,0.3f,0.0f);
     DrawTextXY(-3.2,-1.2,0.0,0.0008," e:APPLY A ELECTRIC FIELD ");
     DrawTextXY(-3.2,-1.4,0.0,0.0008," E:REMOVE A ELECTRIC FIELD ");
     DrawTextXY(-3.2,-1.6,0.0,0.0008," m:APPLY A MAGNETIC FIELD ");
