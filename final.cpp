@@ -36,7 +36,16 @@ char text4[]={"APPLYING A MAGNETIC FIELD"};
 char text5[]={"Vertical Deflecting Plates"};
 char text6[]={"Horizontal Deflecting Plates"};
 char text7[]={"Electron Gun "};
+char text8[]={"Power Supply "};
 
+char optiontext1[]={"Options"};
+char optiontext2[]={" e:APPLY A ELECTRIC FIELD "};
+char optiontext3[]={" E:REMOVE A ELECTRIC FIELD "};
+char optiontext4[]={" m:APPLY A MAGNETIC FIELD "};
+char optiontext5[]={" M:REMOVE A MAGNETIC FIELD "};
+char optiontext6[]={" z:ZOOM IN "};
+char optiontext7[]={" Z:ZOOM OUT "};
+char optiontext8[]={" Esc:EXIT "};
 char elee[]={"APPLYING A ELECTRIC FIELD"};
 
 GLfloat circles[][2]={{-1.0,4.0},{.9,3.9}};
@@ -44,7 +53,6 @@ GLfloat circles[][2]={{-1.0,4.0},{.9,3.9}};
 GLfloat vertices[][3]={{0,0.7,1.2},{0,1.2,1.2},{0,1.2,0.7},{0,0.7,0.7},/*CRT 4*/{2.15,2.3,-0.7},{2.15,-0.7,-0.7},{2.15,-0.7,2.3},{2.15,2.3,2.3},
 {-2.5,0.7,1.2},{-2.5,1.2,1.2},{-2.5,1.2,0.7},{-2.5,0.7,0.7},{-1,0,0}};
 GLfloat electrodep[][3]={{-0.5,1.8,1.4},{-0.5,1.65,1.4},{0.5,1.65,1.4},{0.5,1.8,1.4},{-0.5,1.8,0},{-0.5,1.65,0},{0.5,1.65,0},{0.5,1.8,0}};
-
 
 //vertex for Electrodes
 GLfloat electroden[][3]={{-0.5,0.1,1.4},{-0.5,0.25,1.4},{0.5,0.25,1.4},{0.5,0.1,1.4},{-0.5,0.1,0},{-0.5,0.25,0},{0.5,0.25,0},{0.5,0.1,0}};
@@ -55,61 +63,11 @@ GLfloat electrodedn[][3]={{-0.10,0.25,0.6},{-0.10,0.25,0.8},{0.10,0.25,0.8},{0.1
 GLfloat colors[][3] = {{0.4,0.4,0.4},{0.4,0.4,0.4},{0.6,0.6,0.6},{0.6,0.6,0.6},{0.6,0.6,0.6},{0.6,0.6,0.6},
 {0.4,0.4,0.4},{0.4,0.4,0.4},{0.4,0.4,0.4},{0.4,0.4,0.4},{0.6,0.6,0.6},{0.6,0.6,0.6}};
 
-
 //Border points
-
 GLfloat border[][2] = {{-3.8,5.1},{3.8,5.1},{3.8,-2.5},{-3.8,-2.5},{-3.6,5.1},{3.6,5.1},{3.8,4.8},{3.8,-2.2},{3.6,-2.5},{-3.6,-2.5},{-3.8,-2.2},{-3.8,4.8}};
-
 
 GLfloat screenborder[][3] = {{2.16,0.0,0.0},/*1*/{2.16,-0.76,-0.72},{2.16,-0.76,-0.68},{2.16,2.35,-0.68},{2.16,2.35,-0.72},/*5*/{2.16,2.27,-0.72},
 {2.16,2.27,2.32},{2.16,2.35,2.32},{2.16,2.35,2.28},/*9*/{2.16,-0.76,2.28},{2.16,-0.76,2.32},{2.16,-0.68,2.32},{2.16,-0.68,-0.72}};
-
-//pixel points
-
-
-GLfloat pixel[][3] = {
-{2.2,-0.5,-0.5} , {2.2,-0.5,-0.3} , {2.2,-0.5,-0.1} , {2.2,-0.5,0.1} , {2.2,-0.5,0.3} , {2.2,-0.5,0.5} , {2.2,-0.5,0.7} , {2.2,-0.5,0.9} , {2.2,-0.5,1.1} , {2.2,-0.5,1.3} , {2.2,-0.5,1.5} ,
-{2.2,-0.5,1.7} , {2.2,-0.5,1.9} , {2.2,-0.5,2.1},
-{2.2, -0.3,-0.5} , {2.2, -0.3 ,-0.3} , {2.2, -0.3 ,-0.1} , {2.2, -0.3 ,0.1} , {2.2, -0.3 ,0.3} , {2.2, -0.3 ,0.5} , {2.2, -0.3 ,0.7} ,
-{2.2, -0.3 ,0.9} , {2.2, -0.3 ,1.1} , {2.2, -0.3 ,1.3} , {2.2, -0.3 ,1.5} , {2.2, -0.3 ,1.7} , {2.2, -0.3 ,1.9} , {2.2, -0.3 ,2.1},
-
-{2.2, -0.1 ,-0.5} , {2.2, -0.1 ,-0.3} , {2.2, -0.1 ,-0.1} , {2.2, -0.1 ,0.1} , {2.2, -0.1 ,0.3} , {2.2, -0.1 ,0.5} , {2.2, -0.1 ,0.7} ,
-{2.2, -0.1 ,0.9} , {2.2, -0.1 ,1.1} , {2.2, -0.1 ,1.3} , {2.2, -0.1 ,1.5} , {2.2, -0.1 ,1.7} , {2.2, -0.1 ,1.9} , {2.2, -0.1 ,2.1},
-
-{2.2, 0.1 ,-0.5} , {2.2, 0.1 ,-0.3} , {2.2, 0.1 ,-0.1} , {2.2,0.1  ,0.1} , {2.2,0.1  ,0.3} , {2.2, 0.1 ,0.5} , {2.2, 0.1 ,0.7} ,
-{2.2, 0.1,0.9} , {2.2,0.1  ,1.1} , {2.2, 0.1 ,1.3} , {2.2,0.1  ,1.5} , {2.2, 0.1 ,1.7} , {2.2,0.1  ,1.9} , {2.2, 0.1 ,2.1},
-
-{2.2, 0.3 ,-0.5} , {2.2, 0.3 ,-0.3} , {2.2,0.3  ,-0.1} , {2.2,0.3  ,0.1} , {2.2, 0.3 ,0.3} , {2.2,0.3  ,0.5} , {2.2,0.3  ,0.7} ,
-{2.2, 0.3 ,0.9} , {2.2,0.3  ,1.1} , {2.2, 0.3 ,1.3} , {2.2, 0.3 ,1.5} , {2.2,0.3  ,1.7} , {2.2, 0.3 ,1.9} , {2.2, 0.3 ,2.1},
-
-{2.2,0.5  ,-0.5} , {2.2, 0.5 ,-0.3} , {2.2, 0.5 ,-0.1} , {2.2, 0.5 ,0.1} , {2.2, 0.5 ,0.3} , {2.2,0.5  ,0.5} , {2.2,0.5  ,0.7} ,
-{2.2, 0.5 ,0.9} , {2.2, 0.5 ,1.1} , {2.2, 0.5 ,1.3} , {2.2, 0.5 ,1.5} , {2.2,0.5  ,1.7} , {2.2,0.5  ,1.9} , {2.2, 0.5 ,2.1},
-
-{2.2, 0.7 ,-0.5} , {2.2,0.7  ,-0.3} , {2.2, 0.7 ,-0.1} , {2.2, 0.7 ,0.1} , {2.2,0.7  ,0.3} , {2.2,0.7  ,0.5} , {2.2,0.7  ,0.7} ,
-{2.2, 0.7 ,0.9} , {2.2, 0.7 ,1.1} , {2.2, 0.7  ,1.3} , {2.2, 0.7 ,1.5} , {2.2, 0.7 ,1.7} , {2.2, 0.7 ,1.9} , {2.2, 0.7 ,2.1},
-
-{2.2,0.9  ,-0.5} , {2.2, 0.9 ,-0.3} , {2.2, 0.9 ,-0.1} , {2.2,0.9  ,0.1} , {2.2,0.9  ,0.3} , {2.2, 0.9 ,0.5} , {2.2, 0.9 ,0.7} ,
-{2.2, 0.9 ,0.9} , {2.2,  0.9 ,1.1} , {2.2, 0.9 ,1.3} , {2.2, 0.9 ,1.5} , {2.2, 0.9 ,1.7} , {2.2, 0.9 ,1.9} , {2.2, 0.9 ,2.1},
-
-{2.2, 1.1 ,-0.5} , {2.2, 1.1 ,-0.3} , {2.2, 1.1 ,-0.1} , {2.2, 1.1,0.1} , {2.2, 1.1 ,0.3} , {2.2, 1.1 ,0.5} , {2.2,1.1  ,0.7} ,
-{2.2, 1.1 ,0.9} , {2.2, 1.1  ,1.1} , {2.2, 1.1 ,1.3} , {2.2, 1.1 ,1.5} , {2.2, 1.1 ,1.7} , {2.2, 1.1 ,1.9} , {2.2, 1.1  ,2.1},
-
-{2.2, 1.3 ,-0.5} , {2.2, 1.3 ,-0.3} , {2.2, 1.3 ,-0.1} , {2.2,1.3  ,0.1} , {2.2,1.3  ,0.3} , {2.2, 1.3,0.5} , {2.2, 1.3 ,0.7} ,
-{2.2, 1.3 ,0.9} , {2.2, 1.3 ,1.1} , {2.2, 1.3 ,1.3} , {2.2, 1.3  ,1.5} , {2.2,1.3 ,1.7} , {2.2, 1.3 ,1.9} , {2.2, 1.3 ,2.1},
-
-{2.2, 1.5 ,-0.5} , {2.2, 1.5 ,-0.3} , {2.2, 1.5 ,-0.1} , {2.2,1.5 ,0.1} , {2.2, 1.5 ,0.3} , {2.2, 1.5 ,0.5} , {2.2, 1.5 ,0.7} ,
-{2.2, 1.5 ,0.9} , {2.2, 1.5  ,1.1} , {2.2, 1.5 ,1.3} , {2.2, 1.5 ,1.5} , {2.2, 1.5 ,1.7} , {2.2, 1.5 ,1.9} , {2.2, 1.5 ,2.1},
-
-{2.2, 1.7 ,-0.5} , {2.2, 1.7 ,-0.3} , {2.2, 1.7 ,-0.1} , {2.2, 1.7 ,0.1} , {2.2, 1.7 ,0.3} , {2.2, 1.7 ,0.5} , {2.2, 1.7  ,0.7} ,
-{2.2, 1.7 ,0.9} , {2.2, 1.7 ,1.1} , {2.2, 1.7 ,1.3} , {2.2, 1.7 ,1.5} , {2.2,1.7 ,1.7} , {2.2, 1.7 ,1.9} , {2.2, 1.7 ,2.1},
-
-{2.2, 1.9 ,-0.5} , {2.2, 1.9 ,-0.3} , {2.2, 1.9,-0.1} , {2.2, 1.9 ,0.1} , {2.2, 1.9 ,0.3} , {2.2, 1.9 ,0.5} , {2.2, 1.9 ,0.7} ,
-{2.2, 1.9 ,0.9} , {2.2, 1.9 ,1.1} , {2.2, 1.9 ,1.3} , {2.2, 1.9 ,1.5} , {2.2, 1.9 ,1.7} , {2.2, 1.9 ,1.9} , {2.2, 1.9 ,2.1},
-
-{2.2, 2.1 ,-0.5} , {2.2, 2.1 ,-0.3} , {2.2, 2.1 ,-0.1} , {2.2, 2.1 ,0.1} , {2.2, 2.1 ,0.3} , {2.2, 2.1 ,0.5} , {2.2, 2.1 ,0.7} ,
-{2.2, 2.1 ,0.9} , {2.2, 2.1 ,1.1} , {2.2, 2.1 ,1.3} , {2.2, 2.1 ,1.5} , {2.2, 2.1 ,1.7} , {2.2, 2.1 ,1.9} , {2.2, 2.1 ,2.1}
-};
-
 
 //power suply cube
 GLfloat powsup[][3]={{-2,1.2,1.2},{-2,1.2,2.2},{-3,1.2,2.2},{-3,1.2,1.2},{-2,2.2,1.2},{-2,2.2,2.2},{-3,2.2,2.2},{-3,2.2,1.2}};
@@ -593,12 +551,12 @@ void electrmotion()                //Apply the motion effect for electron
 
     if(decy<=decyy && state2==1)
     {
-    decy=decy+0.02;
+    decy=decy+0.045;	//0.02;	
     }
 
     if(incy>=incyy && state2==1)
     {
-    incy=incy-0.02;
+    incy=incy-0.045;	//0.02;
     }
 
     if(decy>=decyy && state2==1)
@@ -618,7 +576,7 @@ void electrmotion()                //Apply the motion effect for electron
 
     if(incy1<=incyy1 && state6==1)//for magnet slow motion
     {
-    incy1=incy1+0.017;
+    incy1=incy1+0.15; //0.017;
     }
 
     else if(incy1>=incyy1 && state6==1)
@@ -682,7 +640,6 @@ void DrawTextXY(double x,double y,double z,double scale,char *s)
 
 void keys(unsigned char key, int x, int y)
 {
-/* Use x, X, y, Y, z, and Z keys to move viewer */
 if(key == 'e')
 {
     for(w=0;w<=(int)strlen(elee);w++)
@@ -771,7 +728,7 @@ void myinit()
 }
 
 
-    //$$$$$$$$
+ 
 
 
 
@@ -782,14 +739,8 @@ void screenborderfunc(int a, int b, int c, int d)
 
     glColor3f(0.35f, 0.35f, 0.35f);
     glVertex3fv(screenborder[a]);
-
-    //glColor3f(1.0f, 0.0f, 0.0f);
     glVertex3fv(screenborder[b]);
-
-   // glColor3f(1.0f, 0.0f, 0.0f);
     glVertex3fv(screenborder[c]);
-
-   // glColor3f(1.0f, 0.0f, 0.0f);
     glVertex3fv(screenborder[d]);
 
     glEnd();
@@ -842,16 +793,8 @@ void screenborderfunc(int a, int b, int c, int d)
 
 void display()  // crt_display the all the objects
 {
-    /* Update  position in modelview matrix */
-   // glLoadIdentity();
-    //gluLookAt(viewer[0],viewer[1],viewer[2], 0.0, 0.0, 0.0, 0.0, 100.0, 0.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.6,0.839,1,1);
-/*
-	glRotatef(theta[0], 1.0, 0.0, 0.0);
-	glRotatef(theta[1], 0.0, 1.0, 0.0);
-	glRotatef(theta[2], 0.0, 0.0, 1.0);
-*/
 
     if(state3==1)
     {
@@ -905,28 +848,117 @@ void display()  // crt_display the all the objects
     if(state3==0 && state13==0)
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        // Update  position in modelview matrix                         //$$$$$$$$$
+        // Update  position in modelview matrix                      
 
         glLoadIdentity();
+	
         gluLookAt(viewer[0],viewer[1],viewer[2], 0.0, 0.0, 0.0, 0.0, 100.0, 0.0);
 
         /* rotate cube */
-       glRotatef(theta[0], 0.0, 1.0, 0.0);
+       
         glRotatef(35, 0.0, 1.0, 0.0);
         glRotatef(180, 0.0, 0.0, 1.0);
 
+
+		glColor3f(1,0,0);		
+        glRasterPos3f(1,-3.3,0);
+        for(w=0;w<=(int)strlen(text);w++)
+        {
+			
+             								//color of all the labels
+            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,text[w]);
+        }
+
+		
+		//options
+
+        glRasterPos3f(-5,-5.3,0);
+        for(w=0;w<=(int)strlen(optiontext1);w++)
+        {
+			
+             glColor3f(0.6,0,0);										//color of all the labels
+           glutBitmapCharacter(GLUT_BITMAP_9_BY_15,optiontext1[w]);
+        }
+//options2
+         glRasterPos3f(-5,-5.0,0);
+        for(w=0;w<=(int)strlen(optiontext2);w++)
+        {
+			
+             glColor3f(0.6,0,0);										//color of all the labels
+           glutBitmapCharacter(GLUT_BITMAP_9_BY_15,optiontext2[w]);
+        }
+//options3
+ glRasterPos3f(-5,-4.7,0);
+        for(w=0;w<=(int)strlen(optiontext3);w++)
+        {
+			
+             glColor3f(0.6,0,0);										//color of all the labels
+           glutBitmapCharacter(GLUT_BITMAP_9_BY_15,optiontext3[w]);
+        }
+
+//options4
+
+ glRasterPos3f(-5,-4.4,0);
+        for(w=0;w<=(int)strlen(optiontext4);w++)
+        {
+			
+             glColor3f(0.6,0,0);										//color of all the labels
+           glutBitmapCharacter(GLUT_BITMAP_9_BY_15,optiontext4[w]);
+        }
+
+
+//options5
+ glRasterPos3f(-5,-4.1,0);
+        for(w=0;w<=(int)strlen(optiontext5);w++)
+        {
+			
+             glColor3f(0.6,0,0);										//color of all the labels
+           glutBitmapCharacter(GLUT_BITMAP_9_BY_15,optiontext5[w]);
+        }
+
+
+
+//options6
+
+ glRasterPos3f(-5,-3.8,0);
+        for(w=0;w<=(int)strlen(optiontext6);w++)
+        {
+			
+             glColor3f(0.6,0,0);										//color of all the labels
+           glutBitmapCharacter(GLUT_BITMAP_9_BY_15,optiontext6[w]);
+        }
+
+
+
+//options7
+ glRasterPos3f(-5,-3.5,0);
+        for(w=0;w<=(int)strlen(optiontext7);w++)
+        {
+			
+             glColor3f(0.6,0,0);										//color of all the labels
+           glutBitmapCharacter(GLUT_BITMAP_9_BY_15,optiontext7[w]);
+        }
+
+		
+//options8
+ glRasterPos3f(-5,-3.2,0);
+        for(w=0;w<=(int)strlen(optiontext8);w++)
+        {
+			
+             glColor3f(0.6,0,0);										//color of all the labels
+           glutBitmapCharacter(GLUT_BITMAP_9_BY_15,optiontext8[w]);
+        }
+
+glRotatef(theta[0], 0.0, 1.0, 0.0);
         colorcube();
         electrod();
         power();
         magnu();
         magnd();
 
-        glRasterPos3f(0,-3.3,0);
-        for(w=0;w<=(int)strlen(text);w++)
-        {
-             glColor3f(0.6,0,0);										//color of all the labels
-            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,text[w]);
-        }
+
+	glColor3f(0.6,0,0);	
+
 
         glRasterPos3f(-4,0,0);
         glBegin(GL_LINE_LOOP);
@@ -937,7 +969,7 @@ void display()  // crt_display the all the objects
         {
             glutBitmapCharacter(GLUT_BITMAP_9_BY_15,text1[w]);
         }
-        glRasterPos3f(-2.6,-0,0);
+        glRasterPos3f(-2.6,0,0);
         glBegin(GL_LINE_LOOP);
         glVertex3f(-2.7,0.2,0);
         glVertex3f(-1.75,0.7,1.1);
@@ -947,12 +979,12 @@ void display()  // crt_display the all the objects
             glutBitmapCharacter(GLUT_BITMAP_9_BY_15,text2[w]);
         }
 
-        //$$$$
+
 
         glRasterPos3f(2.8,-1.4,0);
         glBegin(GL_LINE_LOOP);
-        glVertex3f(2.6,-1.2,0);//$$$$
-        glVertex3f(2.2,-0.4,1); //$$$$
+        glVertex3f(2.6,-1.2,0);
+        glVertex3f(2.2,-0.4,1); 
         glEnd();
         for(w=0;w<=(int)strlen(text3);w++)
         {
@@ -985,8 +1017,6 @@ void display()  // crt_display the all the objects
         }
 
 
-
-
 				// electron gun 
 
 		 glRasterPos3f(-3.7,-0.9,-0.2);
@@ -1001,353 +1031,23 @@ void display()  // crt_display the all the objects
         }
 
 
+		//power supply
+
+		 glRasterPos3f(-5.5,-0.6,-0.2);
+        glBegin(GL_LINE_LOOP);
+        glVertex3f(-5.7,-0.35,-0.2);
+        glVertex3f(-2.5,1.7,1.7);
+        glEnd();
+
+        for(w=0;w<=(int)strlen(text7);w++)
+        {
+            glutBitmapCharacter(GLUT_BITMAP_9_BY_15,text8[w]);
+        }
 
 
 
         y=l/50;
         z=0;
-
-
-
-
-
-
-        /*
-
-        for(f=0;f<=4;f=f+0.08,z=z+y)            //display electron as points
-        {
-        glPointSize(6);
-        glColor3f(0,t,0);
-        glVertex3f(-2.5+f,1,1);
-        }
-        glEnd();
-        glPointSize(25);
-
-        if(state1==0)
-        {
-        cc=1;
-        }
-    else
-        {
-        cc=2;
-        }
-        if(state2==1&state11==1&state12==1)
-        {
-        cc=3;
-
-        }
-        if(state6==1&state9==1)
-        {
-        cc=3;
-        }
-        if(state7==1&state10==1)
-        {
-        cc=4;
-        }
-
-
-
-        switch(cc)
-        {
-    case 1:yy=1;
-
-        for(f=0;f<=4;f=f+0.08)            //display electron as points in slant up
-
-        {
-
-
-        glPointSize(6);
-
-
-        glBegin(GL_POINTS);
-
-
-
-
-        if((-2.5+f)>-0.4)
-        {
-        glColor3f(0,t,0);
-        glVertex3f(-2.5+f,yy,1);        //$$$$$$$$$
-        yy=yy+va;    //0.02
-
-        }
-    else
-        {
-        glColor3f(0,t,0);
-        glVertex3f(-2.5+f,1,1);     //$$$$$$$$$
-
-        }
-
-
-        }
-        state1=1;
-
-        glEnd();
-
-
-        break;
-
-    case 2:yy=1;
-        for(f=0;f<=4;f=f+0.08)            //display electron as points in slant down
-
-        {
-        glPointSize(6);
-        glBegin(GL_POINTS);
-        if((-2.5+f)>0.0)                //$$$$$$$$$
-        {
-        glColor3f(0,1,0);
-        glVertex3f(-2.5+f,yy,1);        //$$$$$$$$$
-        yy=yy-va;    //0.02
-        }
-    else
-        {
-
-        glColor3f(0,t,0);
-        glVertex3f(-2.5+f,1,1);
-
-        }
-
-
-        }
-
-        state1=0;
-        glEnd();
-
-
-
-        break;
-    case 3:
-
-        yyy=1;
-        for(f=0;f<=4;f=f+0.08)            //display electron as points in slant down
-
-        {
-        glPointSize(6);
-        glBegin(GL_POINTS);
-        if((-2.5+f)>0.0)
-        {
-        glColor3f(0,t,0);
-        glVertex3f(-2.5+f,yyy,1);
-        yyy=yyy-0.03;    //0.02
-        }
-    else
-        {
-
-        glColor3f(0,t,0);
-        glVertex3f(-2.5+f,1,1);
-
-        }
-
-
-        }
-
-
-        state1=0;
-        glEnd();
-
-
-
-        break;
-    case 4:
-
-        y2=1;
-        for(f=0;f<=4;f=f+0.08)            //display electron as points in slant down
-
-        {
-        glPointSize(6);
-        glBegin(GL_POINTS);
-        if((-2.5+f)>0.0)
-        {
-        glColor3f(0,t,0);
-        glVertex3f(-2.5+f,y2,1);
-        y2=y2+0.02;    //0.02
-        }
-    else
-        {
-
-        glColor3f(0,t,0);
-        glVertex3f(-2.5+f,1,1);
-
-        }
-
-
-        }
-
-        state1=0;
-        glEnd();
-
-
-        break;
-
-        }
-        */
-
-        /*
-
-        yy=1;
-
-        for(f=0;f<=4;f=f+0.08)            //display electron as points in slant up
-        {
-        glPointSize(6);
-        glBegin(GL_POINTS);
-
-        if((-2.5+f)>-0.4)
-        {
-        glColor3f(0,t,0);
-        glVertex3f(-2.5+f,yy,1);        //$$$$$$$$$
-        yy=yy+va;    //0.02
-        }
-    else
-        {
-        glColor3f(0,t,0);
-        glVertex3f(-2.5+f,1,1);     //$$$$$$$$$
-        }
-        }
-        //  state1=1;
-        glEnd();
-
-
-        */
-
-
-        /*                                                          dotted line from back to the end of the tube
-        glLineStipple(1, 0xAAAA);
-        glEnable(GL_LINE_STIPPLE);
-        glLineWidth(6);
-        glBegin(GL_LINES);
-        glColor3f(0,1.0,0);
-        glVertex3f(-2.5,1,1);       //origin for the ray
-        glVertex3f(0,1,1);
-        glEnd();
-        */
-/*
-        int i;							//dots on the screen
-		
-float j,g=0.0,h=0.0,k=0.0;
-			int l=0,m=0;
-		//for (K=0;K<=196;K++)
-        for (i=0;i<=196;i++)
-        {
-            glBegin(GL_POINTS);
-			
-			glPointSize(10);
-           
-			glColor3f(0.0,0.0,1.0);
-            //glVertex3f(0,1.0,1.0);        //origin for the ray
-		
-			g=pixel[l][m];
-			h=pixel[l][m];
-			k=pixel[l][m];
-			l++,m++;
-			glVertex3f(g,h,k);
-			for ( j=0.0;j<=30000; j=j+1){}
-			for (j=0.0;j<=30000; j=j+1){}
-			for ( j=0.0;j<=30000; j=j+1){}
-			for ( j=0.0;j<=30000; j=j+1){}for ( j=0.0;j<=30000; j=j+1){}
-			for ( j=0.0;j<=30000; j=j+1){}
-           
-			//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			//glutSwapBuffers();
-            //glutPostRedisplay();
-       
-
-	 glEnd();
- }
-*/
-//-----------------------------------------------------
-//int k;
-glPointSize(10);
-	glBegin(GL_POINTS);
-	float j,a=0.0,b=0.0,c=0.0,i=0.0,m=0.0,colr=0.0,colg=0.0,colb=0.0;
-	for (i=-0.5;i<=2.3;i=i+0.2)
-		for(m=-0.5;m<=2.3;m=m+0.2)
-		{		colr = rand() % 2;
-				colg = rand() % 2;
-				colb = rand() % 2;
-				glPointSize(10);
-				glColor3f(0.0,0.0,colb);
-				glVertex3f(2.2,i,m);
-				for ( j=0.0;j<=30000; j=j+1){}
-				for ( j=0.0;j<=30000; j=j+1){}
-				for ( j=0.0;j<=30000; j=j+1){}
-				//for ( j=0.0;j<=30000; j=j+1){} 
-				//glutSwapBuffers();
-		}
-
-	glEnd();
-
-
-
-/*
-int i;							//dots on the screen
-		
-
-		glBegin(GL_POINTS);
-		// for (K=0;K<=196;K++)
-        for (i=0;i<=196;i++)
-        {
-            glPointSize(10);
-           
-			glColor3f(0.0,0.0,1.0);
-            //glVertex3f(0,1.0,1.0);        //origin for the ray
-            glVertex3fv(pixel[i]);
-			for (float j=0.0;j<=30000; j=j+1){}
-           
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			//glutSwapBuffers();
-            glutPostRedisplay();
-        }
-
- glEnd();
-
-*/
-
-
-
-
-
-			screenborderfunc(1,2,3,4);
-			screenborderfunc(4,5,6,7);
-			screenborderfunc(7,8,9,10);
-			screenborderfunc(10,11,12,1);
-
-            //$$$$$$
-
-            /*
-            y2=1;                                   //small copy of original code (trial)
-            for(f=0;f<=4.75;f=f+0.08)            //display electron as points in slant down
-
-            {
-            glPointSize(6);
-            glBegin(GL_POINTS);
-            if((-2.5+f)>0.0)
-            {
-            glColor3f(0,t,0);
-            glVertex3f(-2.5+f,y2,1);
-            y2=y2+0.02;    //0.02
-            }
-        else
-            {
-            glColor3f(0,t,0);
-            glVertex3f(-2.5+f,1,1);
-            }
-            }
-
-            state1=0;
-            glEnd();
-            */
-            //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-
-
-
-
-
-
-
-
-
-
-
 
         glPointSize(6);
         glBegin(GL_POINTS);
@@ -1390,14 +1090,14 @@ int i;							//dots on the screen
         {
         case 1:yy=1;
 
-            for(f=0;f<=4.35;f=f+0.08)          //display electron as points in slant up
+            for(f=0;f<=4.30;f=f+0.08)          //display electron as points in slant up
             {
                 glPointSize(6);
                 glBegin(GL_POINTS);
                 if((-2.1+f)>-0.0)
                 {
                     glColor3f(0,1.0,0);
-                    glVertex3f(-2.1+f,yy,1);        //$$$$$$$$$
+                    glVertex3f(-2.1+f,yy,1);    
                     yy=yy+va;    //0.02
 
 					glVertex3f(-2.1+f,yy,1);        
@@ -1407,37 +1107,13 @@ int i;							//dots on the screen
                 else
                 {
                     glColor3f(0,1.0,0);
-                    glVertex3f(-2.1+f,1,1);     //$$$$$$$$$
+                    glVertex3f(-2.1+f,1,1);   
                 }
             }
             state1=1;
             glEnd();
 
 
-
-			////////
-
-/*
-			for(f=0;f<=4.25;f=f+0.08)          //display electron as points in slant up
-            {
-                glPointSize(8);
-                glBegin(GL_POINTS);
-                if((-2.1+f)>-0.0)
-                {
-                    glColor3f(0,1.0,0);
-                    glVertex3f(-2.1+f,yy,1);        //$$$$$$$$$
-                    yy=yy+va;    //0.02
-                }
-                else
-                {
-                    glColor3f(0,1.0,0);
-                    glVertex3f(-2.1+f,1,1);     //$$$$$$$$$
-                }
-            }
-            state1=1;
-            glEnd();
-*/
-			///////
 
 
             break;
@@ -1445,20 +1121,20 @@ int i;							//dots on the screen
 
         case 2:
             yy=1;
-            for(f=0;f<=4.35;f=f+0.08)            //display electron as points in slant down
+            for(f=0;f<=4.3;f=f+0.08)            //display electron as points in slant down
             {
                 glPointSize(6);
                 glBegin(GL_POINTS);
-                if((-2.1+f)>0.0)                //$$$$$$$$$
+                if((-2.1+f)>0.0)                
                 {
                     glColor3f(0,1,0);
-                    glVertex3f(-2.1+f,yy,1);        //$$$$$$$$$
+                    glVertex3f(-2.1+f,yy,1);      
                     yy=yy-va;    //0.02
 
 
 					
 					glVertex3f(-2.1+f,yy,1);        
-                    yy=yy-va-0.003;					//%%%%
+                    yy=yy-va-0.003;					
                 }
                 else
                 {
@@ -1473,7 +1149,7 @@ int i;							//dots on the screen
 
         case 3:
             yyy=1;
-            for(f=0;f<=4.35;f=f+0.08)            //display electron as points in slant down
+            for(f=0;f<=4.3;f=f+0.08)            //display electron as points in slant down
             {
                 glPointSize(6);
                 glBegin(GL_POINTS);
@@ -1485,7 +1161,7 @@ int i;							//dots on the screen
 
 					
 					glVertex3f(-2.1+f,yyy,1);        
-                    yyy=yyy-0.03-0.003;					//%%%%
+                    yyy=yyy-0.03-0.003;				
 
 
                 }
@@ -1501,7 +1177,7 @@ int i;							//dots on the screen
 
         case 4:
             y2=1;
-            for(f=0;f<=4.35;f=f+0.08)            //display electron as points in slant down
+            for(f=0;f<=4.3;f=f+0.08)            //display electron as points in slant down
             {
                 glPointSize(6);
                 glBegin(GL_POINTS);
@@ -1527,87 +1203,31 @@ int i;							//dots on the screen
             break;
         }
 
-  /* 
-        yy=1;
-
-        for(f=0;f<=4.35;f=f+0.08)          //display electron as points in slant up
-        {
-        glPointSize(8);
-        glBegin(GL_POINTS);
-        if((-2.1+f)>-0.0)
-        {
-        glColor3f(0,t,0);
-        glVertex3f(-2.1+f,yy,1);        //$$$$$$$$$
-        yy=yy+va;    //0.02
-        }
-    else
-        {
-        glColor3f(0,t,0);
-        glVertex3f(-2.1+f,1,1);     //$$$$$$$$$
-        }
-        }
-        state1=1;
-        glEnd();
-
-  
-*/
+glPointSize(10);
+	glBegin(GL_POINTS);
+	float j,i=0.0,m=0.0,colb=0.0;
+	for (i=-0.5;i<=2.3;i=i+0.2)
+	{		colb = rand() % 2;
+		for(m=-0.5;m<=2.3;m=m+0.2)
+		{	
+			
+				glPointSize(10);
+				glColor3f(0.0,0.0,colb);
+				glVertex3f(2.2,i,m);
+				for ( j=0.0;j<=30000; j=j+1){}
+				for ( j=0.0;j<=30000; j=j+1){}
+				for ( j=0.0;j<=30000; j=j+1){}
+		}
+	}
+	glEnd();
 
 
+			screenborderfunc(1,2,3,4);
+			screenborderfunc(4,5,6,7);
+			screenborderfunc(7,8,9,10);
+			screenborderfunc(10,11,12,1);
 
 
-
-
-        
-        yy=1;
-
-        for(f=0;f<=4.35;f=f+0.08)            //display electron as points in slant up
-        {
-        glPointSize(6);
-        glBegin(GL_POINTS);
-
-        if((-2.1+f)>-0.0)
-        {
-        glColor3f(0,t,0);
-        glVertex3f(-2.1+f,yy,1);        //$$$$$$$$$
-        yy=yy+va;    //0.02
-
-		
-		glVertex3f(-2.1+f,yy,1);        
-        yy=yy+va+0.003;
-
-
-        }
-    else
-        {
-        glColor3f(0,t,0);
-        glVertex3f(-2.1+f,1,1);     //$$$$$$$$$
-        }
-        }
-        //  state1=1;
-        glEnd();
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
         glBegin(GL_POLYGON);//anode
         glLineWidth(10);
         glColor3f(1,0,0.5);
@@ -1807,18 +1427,6 @@ int i;							//dots on the screen
 			drawCube(-2.1,0.98,0.98);
 
 
-		
-		
-/*
-			glutCreateMenu(menu);
-            glutAttachMenu(GLUT_RIGHT_BUTTON);
-            glutAddMenuEntry("Electric Field",0);
-            glutAddMenuEntry("magnetic Field(Red=N,White=S)",1);
-            glutAddMenuEntry("Remove magnetic Field",3);
-            glutAddMenuEntry("Remove Electric Field",2);
-            glutAddMenuEntry("exit",4);
-
-*/
             glFlush();
             glutSwapBuffers();
         }
@@ -1835,7 +1443,7 @@ void mouse(int btn, int state, int x, int y)//crt_mouse
     if(btn==GLUT_RIGHT_BUTTON && state == GLUT_DOWN) axis = 2;
 
 
-    theta[axis] -= 10.0;
+    theta[axis] += 10.0;
     ang=theta[axis];
 
     if( theta[axis] > 360.0 ) theta[axis] -= 360.0;
